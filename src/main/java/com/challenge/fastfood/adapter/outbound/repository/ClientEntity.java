@@ -1,17 +1,17 @@
 package com.challenge.fastfood.adapter.outbound.repository;
 
-import com.challenge.fastfood.domain.actor.Example;
+import com.challenge.fastfood.domain.actor.Client;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "example")
+@Table(name = "client")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class ExampleEntity {
+public class ClientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +20,11 @@ public class ExampleEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "email")
+    private String email;
 
-    public Example toDomain() {
-        return new Example(name, description);
-    }
+    @Column(name = "cpf")
+    private String cpf;
 
-    public Example toExample() {
-        return new Example(name, description);
-    }
+
 }
