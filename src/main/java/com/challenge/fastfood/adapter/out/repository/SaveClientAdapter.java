@@ -1,8 +1,8 @@
-package com.challenge.fastfood.adapter.outbound.repository;
+package com.challenge.fastfood.adapter.out.repository;
 
-import com.challenge.fastfood.adapter.outbound.mapstruct.ClientMapper;
-import com.challenge.fastfood.domain.actor.Client;
-import com.challenge.fastfood.domain.ports.outbound.SaveClientAdapterPort;
+import com.challenge.fastfood.adapter.out.mapstruct.ClientMapper;
+import com.challenge.fastfood.domain.entities.Client;
+import com.challenge.fastfood.domain.ports.out.SaveClientAdapterPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

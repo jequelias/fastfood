@@ -1,10 +1,10 @@
-package com.challenge.fastfood.adapter.outbound.mapstruct;
+package com.challenge.fastfood.adapter.out.mapstruct;
 
 
-import com.challenge.fastfood.adapter.inbound.controller.request.ClientRequest;
-import com.challenge.fastfood.adapter.inbound.controller.response.ClientResponse;
-import com.challenge.fastfood.adapter.outbound.repository.ClientEntity;
-import com.challenge.fastfood.domain.actor.Client;
+import com.challenge.fastfood.adapter.in.controller.request.ClientRequest;
+import com.challenge.fastfood.adapter.in.controller.response.ClientResponse;
+import com.challenge.fastfood.adapter.out.repository.ClientEntity;
+import com.challenge.fastfood.domain.entities.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

@@ -1,7 +1,7 @@
 package com.challenge.fastfood.config;
 
-import com.challenge.fastfood.domain.ports.outbound.FindClientAdapterPort;
-import com.challenge.fastfood.domain.ports.outbound.SaveClientAdapterPort;
+import com.challenge.fastfood.domain.ports.out.FindClientAdapterPort;
+import com.challenge.fastfood.domain.ports.out.SaveClientAdapterPort;
 import com.challenge.fastfood.domain.usecase.CreateClientUseCase;
 import com.challenge.fastfood.domain.usecase.FindClientUseCase;
 import org.springframework.context.annotation.Bean;

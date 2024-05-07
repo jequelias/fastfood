@@ -1,4 +1,4 @@
-package com.challenge.fastfood.domain.actor;
+package com.challenge.fastfood.domain.entities;
 
 public class Client {
 

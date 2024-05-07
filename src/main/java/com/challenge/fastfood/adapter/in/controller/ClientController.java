@@ -1,11 +1,11 @@
-package com.challenge.fastfood.adapter.inbound.controller;
+package com.challenge.fastfood.adapter.in.controller;
 
-import com.challenge.fastfood.adapter.inbound.controller.request.ClientRequest;
-import com.challenge.fastfood.adapter.inbound.controller.response.ClientResponse;
-import com.challenge.fastfood.adapter.outbound.mapstruct.ClientMapper;
-import com.challenge.fastfood.domain.actor.Client;
-import com.challenge.fastfood.domain.ports.inbound.CreateClientUseCasePort;
-import com.challenge.fastfood.domain.ports.inbound.FindClientUseCasePort;
+import com.challenge.fastfood.adapter.in.controller.request.ClientRequest;
+import com.challenge.fastfood.adapter.in.controller.response.ClientResponse;
+import com.challenge.fastfood.adapter.out.mapstruct.ClientMapper;
+import com.challenge.fastfood.domain.entities.Client;
+import com.challenge.fastfood.domain.ports.in.CreateClientUseCasePort;
+import com.challenge.fastfood.domain.ports.in.FindClientUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -30,10 +30,15 @@ public class ClientController {
         return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
     }
 
-    @GetMapping("/{name}")
-    @Operation(summary = "Get client by name", description = "Get client by name")
-    public ResponseEntity<ClientResponse> getClientName(@PathVariable String name) {
-        Client client = findClientUseCasePort.findClient(name);
+    @GetMapping("/getClient")
+    @Operation(summary = "Get client", description = "Get client")
+    public ResponseEntity<ClientResponse> getClient(@RequestParam(required = false) String name,
+                                                    @RequestParam(required = false) String cpf,
+                                                    @RequestParam(required = false) String email) {
+        Client client = findClientUseCasePort.findClient(
+                name,
+                cpf,
+                email );
         return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
     }
 

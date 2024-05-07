@@ -1,8 +1,8 @@
 package com.challenge.fastfood.domain.usecase;
 
-import com.challenge.fastfood.domain.actor.Client;
-import com.challenge.fastfood.domain.ports.inbound.FindClientUseCasePort;
-import com.challenge.fastfood.domain.ports.outbound.FindClientAdapterPort;
+import com.challenge.fastfood.domain.entities.Client;
+import com.challenge.fastfood.domain.ports.in.FindClientUseCasePort;
+import com.challenge.fastfood.domain.ports.out.FindClientAdapterPort;
 
 public class FindClientUseCase implements FindClientUseCasePort {
 
@@ -13,7 +13,7 @@ public class FindClientUseCase implements FindClientUseCasePort {
     }
 
     @Override
-    public Client findClient(String name) {
-        return findClientAdapterPort.findClient(name);
+    public Client findClient(String name, String cpf, String email) {
+        return findClientAdapterPort.findClient(name, cpf, email);
     }
 }

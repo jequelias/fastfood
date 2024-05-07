@@ -1,6 +1,5 @@
-package com.challenge.fastfood.adapter.outbound.repository;
+package com.challenge.fastfood.adapter.out.repository;
 
-import com.challenge.fastfood.domain.actor.Client;
 import jakarta.persistence.*;
 import lombok.*;
 
