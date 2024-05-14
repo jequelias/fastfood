@@ -23,14 +23,14 @@ public class ClientController {
     private final ClientMapper clientMapper;
 
 
-    @PostMapping("/create")
+    @PostMapping
     @Operation(summary = "Create client", description = "Create a client")
     public ResponseEntity<ClientResponse> createClient(@RequestBody ClientRequest clientRequest) {
         Client client = createClientUseCasePort.createClient(clientMapper.clientRequestToClient(clientRequest));
         return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
     }
 
-    @GetMapping("/getClient")
+    @GetMapping
     @Operation(summary = "Get client", description = "Get client")
     public ResponseEntity<ClientResponse> getClient(@RequestParam(required = false) String name,
                                                     @RequestParam(required = false) String cpf,
