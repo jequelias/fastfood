@@ -7,6 +7,4 @@ public record ClientResponse(
         String name,
         @Schema(description = "The email of the client", example = "jequelia@email.com")
         String email) {
-
-
 }

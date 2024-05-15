@@ -7,18 +7,28 @@ import com.challenge.fastfood.domain.valueObjects.Snack;
 
 public class Lunch {
 
+    private Client client;
     private Snack snack;
     private Accompaniment accompaniment;
     private Drink drink;
     private Dessert dessert;
     private double priceTotal;
 
-    public Lunch(Snack snack, Accompaniment accompaniment, Drink drink, Dessert dessert) {
+    public Lunch(Client client, Snack snack, Accompaniment accompaniment, Drink drink, Dessert dessert) {
+        this.client = client;
         this.snack = snack;
         this.accompaniment = accompaniment;
         this.drink = drink;
         this.dessert = dessert;
         this.priceTotal = snack.getTotalPrice() + accompaniment.getTotalPrice() + drink.getTotalPrice() + dessert.getTotalPrice();
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public double getPriceTotal() {
@@ -41,7 +51,7 @@ public class Lunch {
         return accompaniment;
     }
 
-public void setAccompaniment(Accompaniment accompaniment) {
+    public void setAccompaniment(Accompaniment accompaniment) {
         this.accompaniment = accompaniment;
     }
 
