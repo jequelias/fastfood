@@ -1,0 +1,11 @@
+package com.challenge.fastfood.domain.ports.in;
+
+import com.challenge.fastfood.domain.entities.LunchItem;
+import com.challenge.fastfood.domain.entities.LunchItemType;
+
+import java.util.List;
+
+public interface FindLunchItemsUseCasePort {
+
+    List<LunchItem> findLunchItems(LunchItemType type);
+}
