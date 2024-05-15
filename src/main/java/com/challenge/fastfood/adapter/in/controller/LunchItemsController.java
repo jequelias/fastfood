@@ -1,18 +1,17 @@
 package com.challenge.fastfood.adapter.in.controller;
 
+import com.challenge.fastfood.adapter.in.controller.request.LunchItemRequest;
 import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.entities.LunchItemType;
+import com.challenge.fastfood.domain.ports.in.CreateLunchItemUseCasePort;
 import com.challenge.fastfood.domain.ports.in.FindLunchItemsUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LunchItemsController {
 
+    private final CreateLunchItemUseCasePort createLunchItemUseCasePort;
     private final FindLunchItemsUseCasePort findLunchItemsUseCasePort;
     private final LunchItemMapper lunchItemMapper;
 
@@ -36,5 +36,12 @@ public class LunchItemsController {
         }
         List<LunchItem> lunchItemList = findLunchItemsUseCasePort.findLunchItems(lunchItemType);
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItemList));
+    }
+
+    @PostMapping
+    @Operation(summary = "Create a lunch item", description = "Create a lunch item")
+    public ResponseEntity<LunchItemResponse> createLunchItem(@RequestBody LunchItemRequest lunchItemRequest) {
+        LunchItem lunchItem = createLunchItemUseCasePort.createLunchItem(lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest));
+        return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItem));
     }
 }

@@ -4,6 +4,6 @@ import com.challenge.fastfood.domain.entities.Client;
 
 public interface CreateClientUseCasePort {
 
-    Client createClient(Client example);
+    Client createClient(Client client);
 
 }

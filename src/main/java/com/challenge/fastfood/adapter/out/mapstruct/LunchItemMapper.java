@@ -1,5 +1,6 @@
 package com.challenge.fastfood.adapter.out.mapstruct;
 
+import com.challenge.fastfood.adapter.in.controller.request.LunchItemRequest;
 import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.repository.LunchItemEntity;
 import com.challenge.fastfood.domain.entities.LunchItem;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LunchItemMapper {
+
+    LunchItem lunchItemRequestToLunchItem(LunchItemRequest lunchItemRequest);
 
     LunchItemResponse lunchItemToLunchItemResponse(LunchItem lunchItem);
     List<LunchItemResponse> lunchItemToLunchItemResponse(List<LunchItem> lunchItems);
