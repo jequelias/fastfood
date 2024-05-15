@@ -28,7 +28,12 @@ public class LunchItemsController {
     @GetMapping
     @Operation(summary = "Get available lunch items", description = "Get available lunch items")
     public ResponseEntity<List<LunchItemResponse>> getLunchItems(@RequestParam(required = false) String type) {
-        LunchItemType lunchItemType = type == null ? null : LunchItemType.valueOf(type.toUpperCase());
+        LunchItemType lunchItemType;
+        try {
+            lunchItemType = type == null ? null : LunchItemType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(List.of());
+        }
         List<LunchItem> lunchItemList = findLunchItemsUseCasePort.findLunchItems(lunchItemType);
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItemList));
     }
