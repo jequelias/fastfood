@@ -19,4 +19,9 @@ public class FindLunchItemsUseCase implements FindLunchItemsUseCasePort {
     public List<LunchItem> findLunchItems(LunchItemType type) {
         return findLunchItemsAdapterPort.findLunchItems(type);
     }
+
+    @Override
+    public LunchItem findLunchItemByName(String name) {
+        return findLunchItemsAdapterPort.findLunchItemByName(name);
+    }
 }

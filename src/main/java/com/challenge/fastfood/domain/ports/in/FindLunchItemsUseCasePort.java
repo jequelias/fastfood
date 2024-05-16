@@ -8,4 +8,5 @@ import java.util.List;
 public interface FindLunchItemsUseCasePort {
 
     List<LunchItem> findLunchItems(LunchItemType type);
+    LunchItem findLunchItemByName(String name);
 }
