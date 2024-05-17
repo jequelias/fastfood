@@ -6,6 +6,7 @@ import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.entities.LunchItemType;
 import com.challenge.fastfood.domain.ports.in.CreateLunchItemUseCasePort;
+import com.challenge.fastfood.domain.ports.in.DeleteLunchItemUseCasePort;
 import com.challenge.fastfood.domain.ports.in.FindLunchItemsUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,6 +24,7 @@ public class LunchItemsController {
 
     private final CreateLunchItemUseCasePort createLunchItemUseCasePort;
     private final FindLunchItemsUseCasePort findLunchItemsUseCasePort;
+    private final DeleteLunchItemUseCasePort deleteLunchItemUseCasePort;
     private final LunchItemMapper lunchItemMapper;
 
     @GetMapping
@@ -43,5 +45,12 @@ public class LunchItemsController {
     public ResponseEntity<LunchItemResponse> createLunchItem(@RequestBody LunchItemRequest lunchItemRequest) {
         LunchItem lunchItem = createLunchItemUseCasePort.createLunchItem(lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest));
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItem));
+    }
+
+    @DeleteMapping("/{lunchId}")
+    @Operation(summary = "Delete a lunch order", description = "Delete a lunch order")
+    public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId) {
+        Boolean deleteLunchItem = deleteLunchItemUseCasePort.deleteLunchItem(lunchId);
+        return ResponseEntity.ok(deleteLunchItem);
     }
 }

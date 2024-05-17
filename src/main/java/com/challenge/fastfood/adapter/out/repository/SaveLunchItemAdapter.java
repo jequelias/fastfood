@@ -16,6 +16,7 @@ public class SaveLunchItemAdapter implements SaveLunchItemAdapterPort {
     @Override
     public LunchItem saveLunchItem(LunchItem lunchItem) {
         LunchItemEntity lunchItemEntity = lunchItemMapper.lunchItemToLunchItemEntity(lunchItem);
+        lunchItemEntity.setStatus(true);
         LunchItemEntity lunchItemEntitySaved = lunchItemsRepository.save(lunchItemEntity);
 
         return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntitySaved);

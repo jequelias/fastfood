@@ -18,13 +18,13 @@ public class FindLunchItemsAdapter implements FindLunchItemsAdapterPort {
 
     @Override
     public List<LunchItem> findLunchItems(LunchItemType type) {
-        List<LunchItemEntity> lunchItemEntity = lunchItemsRepository.findByType(type);
+        List<LunchItemEntity> lunchItemEntity = lunchItemsRepository.findByTypeAndStatusTrue(type);
         return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
     }
 
     @Override
     public LunchItem findLunchItemByName(String name) {
-        LunchItemEntity lunchItemEntity = lunchItemsRepository.findByName(name);
+        LunchItemEntity lunchItemEntity = lunchItemsRepository.findByNameAndStatusTrue(name);
         return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
     }
 

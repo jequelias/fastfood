@@ -1,98 +1,72 @@
 package com.challenge.fastfood.domain.entities;
 
-import com.challenge.fastfood.domain.valueObjects.Accompaniment;
-import com.challenge.fastfood.domain.valueObjects.Dessert;
-import com.challenge.fastfood.domain.valueObjects.Drink;
-import com.challenge.fastfood.domain.valueObjects.Snack;
+
+import com.challenge.fastfood.adapter.out.repository.LunchItemEntity;
+
+import java.util.List;
 
 public class Lunch {
 
     private Client client;
-    private Snack snack;
-    private Accompaniment accompaniment;
-    private Drink drink;
-    private Dessert dessert;
+    private List<LunchItemEntity> lunchItems;
     private double priceTotal;
     private String status;
+    private Long id;
 
-    public Lunch(Client client, Snack snack, Accompaniment accompaniment, Drink drink, Dessert dessert) {
+    public Lunch(Client client, List<LunchItemEntity> lunchItems, Long id) {
         this.client = client;
-        this.snack = snack;
-        this.accompaniment = accompaniment;
-        this.drink = drink;
-        this.dessert = dessert;
+        this.lunchItems = lunchItems;
         this.priceTotal = 0;
-        if (snack != null) this.priceTotal += snack.getTotalPrice();
-        if (accompaniment != null) this.priceTotal += accompaniment.getTotalPrice();
-        if (drink != null) this.priceTotal += drink.getTotalPrice();
-        if (dessert != null) this.priceTotal += dessert.getTotalPrice();
+        for (LunchItemEntity lunchItem : lunchItems) {
+            this.priceTotal += lunchItem.getPrice();
+        }
         this.status = "PENDENTE";
+        this.id = id;
     }
 
     public Client getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+    public List<LunchItemEntity> getLunchItems() {
+            return lunchItems;
+        }
 
     public double getPriceTotal() {
-        return priceTotal;
-    }
-
-    public void setPriceTotal(double priceTotal) {
-        this.priceTotal = priceTotal;
-    }
-
-    public Snack getSnack() {
-        return snack;
-    }
-
-    public void setSnack(Snack snack) {
-        this.snack = snack;
-    }
-
-    public Accompaniment getAccompaniment() {
-        return accompaniment;
-    }
-
-    public void setAccompaniment(Accompaniment accompaniment) {
-        this.accompaniment = accompaniment;
-    }
-
-    public Drink getDrink() {
-        return drink;
-    }
-
-    public void setDrink(Drink drink) {
-        this.drink = drink;
-    }
-
-    public Dessert getDessert() {
-        return dessert;
-    }
-
-    public void setDessert(Dessert dessert) {
-        this.dessert = dessert;
-    }
+            return priceTotal;
+        }
 
     public String getStatus() {
-        return status;
-    }
+            return status;
+        }
 
     public void setStatus(String status) {
-        this.status = status;
+            this.status = status;
+        }
+
+    public void setClient(Client client) {
+            this.client = client;
+        }
+
+    public void setLunchItems(List<LunchItemEntity> lunchItems) {
+            this.lunchItems = lunchItems;
+        }
+
+    public void setPriceTotal(double priceTotal) {
+            this.priceTotal = priceTotal;
+        }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
-    public double getTotalPrice() {
-        priceTotal = 0;
-        if (snack != null) priceTotal += snack.getTotalPrice();
-        if (accompaniment != null) priceTotal += accompaniment.getTotalPrice();
-        if (drink != null) priceTotal += drink.getTotalPrice();
-        if (dessert != null) priceTotal += dessert.getTotalPrice();
-        return priceTotal;
-    }
+
+
+
 
 }

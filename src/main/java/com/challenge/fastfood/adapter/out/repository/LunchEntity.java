@@ -23,7 +23,10 @@ public class LunchEntity {
     private ClientEntity client;
 
     @ManyToMany
-    @JoinTable(name="lunch_lunch_item")
+    @JoinTable(
+            name="lunch_lunch_item",
+            joinColumns = @JoinColumn(name = "lunch_id"),
+            inverseJoinColumns = @JoinColumn(name = "lunch_item_id"))
     private List<LunchItemEntity> lunchItems;
 
     @Column(name="status")

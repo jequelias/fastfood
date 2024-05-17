@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface LunchItemsRepository extends JpaRepository<LunchItemEntity, Long> {
 
-    List<LunchItemEntity> findByType(LunchItemType lunchItemType);
-    LunchItemEntity findByName(String name);
+    List<LunchItemEntity> findByTypeAndStatusTrue(LunchItemType lunchItemType);
+    LunchItemEntity findByNameAndStatusTrue(String name);
 }

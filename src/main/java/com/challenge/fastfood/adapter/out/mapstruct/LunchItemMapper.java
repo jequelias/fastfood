@@ -4,7 +4,6 @@ import com.challenge.fastfood.adapter.in.controller.request.LunchItemRequest;
 import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.repository.LunchItemEntity;
 import com.challenge.fastfood.domain.entities.LunchItem;
-import com.challenge.fastfood.domain.valueObjects.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
@@ -24,5 +23,5 @@ public interface LunchItemMapper {
     LunchItem lunchItemEntityToLunchItem(LunchItemEntity lunchItemEntity);
     List<LunchItem> lunchItemEntityToLunchItem(List<LunchItemEntity> lunchItemEntities);
 
-    Product lunchItemToProduct(LunchItem lunchItem);
+
 }

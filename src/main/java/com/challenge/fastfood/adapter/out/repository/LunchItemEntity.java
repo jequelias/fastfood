@@ -4,6 +4,8 @@ import com.challenge.fastfood.domain.entities.LunchItemType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Table(name = "lunch_item")
 @Entity
 @Getter
@@ -26,4 +28,8 @@ public class LunchItemEntity {
 
     @Column(name = "price")
     private float price;
+
+    @Column(name= "status")
+    private Boolean status;
+
 }

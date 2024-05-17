@@ -33,5 +33,15 @@ public class Config {
         return new CreateLunchUseCase(saveLunchAdapterPort);
     }
 
+    @Bean
+    public FindLunchUseCase findLunchUseCase(FindLunchAdapterPort findLunchAdapterPort) {
+        return new FindLunchUseCase(findLunchAdapterPort);
+    }
+
+    @Bean
+    public DeleteLunchItemUseCase deleteLunchItemUseCase(DeleteLunchItemAdapterPort deleteLunchItemAdapterPort) {
+        return new DeleteLunchItemUseCase(deleteLunchItemAdapterPort);
+    }
+
 
 }
