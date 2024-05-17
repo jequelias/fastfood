@@ -2,6 +2,7 @@ package com.challenge.fastfood.adapter.out.repository;
 
 import com.challenge.fastfood.adapter.in.controller.request.LunchRequest;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchMapper;
+import com.challenge.fastfood.config.exception.ClientNotFoundException;
 import com.challenge.fastfood.domain.entities.Lunch;
 import com.challenge.fastfood.domain.ports.out.SaveLunchAdapterPort;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class SaveLunchAdapter implements SaveLunchAdapterPort {
 
     private ClientEntity getClientEntity(LunchRequest lunchRequest, ClientEntity clientEntity) {
         if(lunchRequest.clientId() != null) {
-            clientEntity = clientRepository.findById(lunchRequest.clientId()).orElseThrow();
+            clientEntity = clientRepository.findById(lunchRequest.clientId()).orElseThrow(() -> new ClientNotFoundException("Client not found." ));
         }
         return clientEntity;
     }
