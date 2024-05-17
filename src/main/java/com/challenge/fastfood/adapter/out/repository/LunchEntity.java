@@ -5,30 +5,27 @@ import lombok.*;
 
 import java.util.List;
 
-@Table(name = "client")
+@Table(name = "lunch")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class ClientEntity {
+public class LunchEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
+    private ClientEntity client;
 
-    @Column(name = "email")
-    private String email;
+    @ManyToMany
+    @JoinTable(name="lunch_lunch_item")
+    private List<LunchItemEntity> lunchItems;
 
-    @Column(name = "cpf")
-    private String cpf;
-
-    @OneToMany
-    private List<LunchEntity> lunches;
-
-
+    @Column(name="status")
+    private String status;
 }

@@ -22,4 +22,10 @@ public class FindLunchItemsAdapter implements FindLunchItemsAdapterPort {
         return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
     }
 
+    @Override
+    public LunchItem findLunchItemByName(String name) {
+        LunchItemEntity lunchItemEntity = lunchItemsRepository.findByName(name);
+        return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
+    }
+
 }

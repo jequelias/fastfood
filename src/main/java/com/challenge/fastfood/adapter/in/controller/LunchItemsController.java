@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/lunch-items")
-@Tag(name = "LunchItems", description = "Client Controller")
+@Tag(name = "LunchItems", description = "Lunch Items Controller")
 @RequiredArgsConstructor
 public class LunchItemsController {
 

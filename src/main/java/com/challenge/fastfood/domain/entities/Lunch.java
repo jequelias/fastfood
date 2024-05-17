@@ -13,6 +13,7 @@ public class Lunch {
     private Drink drink;
     private Dessert dessert;
     private double priceTotal;
+    private String status;
 
     public Lunch(Client client, Snack snack, Accompaniment accompaniment, Drink drink, Dessert dessert) {
         this.client = client;
@@ -20,7 +21,12 @@ public class Lunch {
         this.accompaniment = accompaniment;
         this.drink = drink;
         this.dessert = dessert;
-        this.priceTotal = snack.getTotalPrice() + accompaniment.getTotalPrice() + drink.getTotalPrice() + dessert.getTotalPrice();
+        this.priceTotal = 0;
+        if (snack != null) this.priceTotal += snack.getTotalPrice();
+        if (accompaniment != null) this.priceTotal += accompaniment.getTotalPrice();
+        if (drink != null) this.priceTotal += drink.getTotalPrice();
+        if (dessert != null) this.priceTotal += dessert.getTotalPrice();
+        this.status = "PENDENTE";
     }
 
     public Client getClient() {
@@ -71,12 +77,22 @@ public class Lunch {
         this.dessert = dessert;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
     public double getTotalPrice() {
-        return snack.getTotalPrice() +
-                accompaniment.getTotalPrice() +
-                drink.getTotalPrice() +
-                dessert.getTotalPrice();
+        priceTotal = 0;
+        if (snack != null) priceTotal += snack.getTotalPrice();
+        if (accompaniment != null) priceTotal += accompaniment.getTotalPrice();
+        if (drink != null) priceTotal += drink.getTotalPrice();
+        if (dessert != null) priceTotal += dessert.getTotalPrice();
+        return priceTotal;
     }
 
 }

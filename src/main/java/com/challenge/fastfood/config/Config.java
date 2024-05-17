@@ -1,13 +1,7 @@
 package com.challenge.fastfood.config;
 
-import com.challenge.fastfood.domain.ports.out.FindClientAdapterPort;
-import com.challenge.fastfood.domain.ports.out.FindLunchItemsAdapterPort;
-import com.challenge.fastfood.domain.ports.out.SaveClientAdapterPort;
-import com.challenge.fastfood.domain.ports.out.SaveLunchItemAdapterPort;
-import com.challenge.fastfood.domain.usecase.CreateClientUseCase;
-import com.challenge.fastfood.domain.usecase.CreateLunchItemUseCase;
-import com.challenge.fastfood.domain.usecase.FindClientUseCase;
-import com.challenge.fastfood.domain.usecase.FindLunchItemsUseCase;
+import com.challenge.fastfood.domain.ports.out.*;
+import com.challenge.fastfood.domain.usecase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,6 +26,11 @@ public class Config {
     @Bean
     public FindLunchItemsUseCase findLunchItemsUseCase(FindLunchItemsAdapterPort findLunchItemsAdapterPort) {
         return new FindLunchItemsUseCase(findLunchItemsAdapterPort);
+    }
+
+    @Bean
+    public CreateLunchUseCase createLunchUseCase(SaveLunchAdapterPort saveLunchAdapterPort) {
+        return new CreateLunchUseCase(saveLunchAdapterPort);
     }
 
 
