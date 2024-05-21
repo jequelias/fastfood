@@ -5,9 +5,9 @@ import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.entities.LunchItemType;
-import com.challenge.fastfood.domain.ports.in.CreateLunchItemUseCasePort;
-import com.challenge.fastfood.domain.ports.in.DeleteLunchItemUseCasePort;
-import com.challenge.fastfood.domain.ports.in.FindLunchItemsUseCasePort;
+import com.challenge.fastfood.domain.ports.in.lunchItem.CreateLunchItemUseCasePort;
+import com.challenge.fastfood.domain.ports.in.lunchItem.EditLunchItemUseCasePort;
+import com.challenge.fastfood.domain.ports.in.lunchItem.FindLunchItemsUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class LunchItemsController {
 
     private final CreateLunchItemUseCasePort createLunchItemUseCasePort;
     private final FindLunchItemsUseCasePort findLunchItemsUseCasePort;
-    private final DeleteLunchItemUseCasePort deleteLunchItemUseCasePort;
+    private final EditLunchItemUseCasePort editLunchItemUseCasePort;
     private final LunchItemMapper lunchItemMapper;
 
     @GetMapping
@@ -50,7 +50,15 @@ public class LunchItemsController {
     @DeleteMapping("/{lunchId}")
     @Operation(summary = "Delete a lunch order", description = "Delete a lunch order")
     public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId) {
-        Boolean deleteLunchItem = deleteLunchItemUseCasePort.deleteLunchItem(lunchId);
+        Boolean deleteLunchItem = editLunchItemUseCasePort.editStatusLunchItem(lunchId);
         return ResponseEntity.ok(deleteLunchItem);
+    }
+
+    @PutMapping("/{lunchId}")
+    @Operation(summary = "Edit a lunch order", description = "Edit a lunch order")
+    public ResponseEntity<LunchItemResponse> editLunchItem(@PathVariable Long lunchId, @RequestBody LunchItemRequest lunchItemRequest) {
+        LunchItem toLunchItem = lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest);
+        LunchItem lunchItem = editLunchItemUseCasePort.editLunchItem(lunchId, toLunchItem);
+        return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItem));
     }
 }

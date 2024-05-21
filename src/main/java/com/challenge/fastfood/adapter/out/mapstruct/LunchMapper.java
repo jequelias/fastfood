@@ -1,7 +1,7 @@
 package com.challenge.fastfood.adapter.out.mapstruct;
 
 import com.challenge.fastfood.adapter.in.controller.response.LunchResponse;
-import com.challenge.fastfood.adapter.out.repository.LunchEntity;
+import com.challenge.fastfood.adapter.out.repository.lunch.LunchEntity;
 import com.challenge.fastfood.domain.entities.Lunch;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

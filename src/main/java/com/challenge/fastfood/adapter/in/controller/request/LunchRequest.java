@@ -8,13 +8,13 @@ import java.util.List;
 public record LunchRequest(
         @Schema(description = "The client's identification", example = "Patrícia or 111.111.111-11 or patricia@fastfood.com", nullable = true)
         Long clientId,
-        @Schema(description = "The lunch snack", example = "Hamburger", nullable = true)
+        @Schema(description = "The ids lunchs snack", example = "[1,2,5]", nullable = true)
         List<Long> snack,
-        @Schema(description = "The lunch drink", example = "Milkshake", nullable = true)
+        @Schema(description = "The ids lunchs drink", example = "[]", nullable = true)
         List<Long> drink,
-        @Schema(description = "The lunch accompaniment", example = "Fries", nullable = true)
+        @Schema(description = "The ids lunchs accompaniment", example = "[]", nullable = true)
         List<Long> accompaniment,
-        @Schema(description = "The lunch dessert", example = "Ice-cream", nullable = true)
+        @Schema(description = "The ids lunchs dessert", example = "[]", nullable = true)
         List<Long> dessert
 ) {
 

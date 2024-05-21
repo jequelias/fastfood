@@ -8,6 +8,6 @@ public record LunchItemResponse(
     String name,
     @Schema(description = "The price of the lunch item", example = "1.42")
     float price,
-    @Schema(description = "The type of the lunch item", example = "Snack")
+    @Schema(description = "The type of the lunch item", example = "SNACK")
     LunchItemType type) {
 }

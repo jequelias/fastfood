@@ -24,11 +24,12 @@ services:
       - "8080:8080"
     networks:
       - local-network
-
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+        - MYSQL_URL=jdbc:mysql://mysql:3306/fastfood
     ports:
       - "8081:8081"
     networks:
