@@ -5,9 +5,7 @@ import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.entities.LunchItemType;
-import com.challenge.fastfood.domain.ports.in.lunchItem.CreateLunchItemUseCasePort;
-import com.challenge.fastfood.domain.ports.in.lunchItem.EditLunchItemUseCasePort;
-import com.challenge.fastfood.domain.ports.in.lunchItem.FindLunchItemsUseCasePort;
+import com.challenge.fastfood.domain.ports.in.lunchItem.LunchItemsControllerPort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LunchItemsController {
 
-    private final CreateLunchItemUseCasePort createLunchItemUseCasePort;
-    private final FindLunchItemsUseCasePort findLunchItemsUseCasePort;
-    private final EditLunchItemUseCasePort editLunchItemUseCasePort;
+    private final LunchItemsControllerPort lunchItemsControllerPort;
     private final LunchItemMapper lunchItemMapper;
 
     @GetMapping
@@ -36,21 +32,21 @@ public class LunchItemsController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(List.of());
         }
-        List<LunchItem> lunchItemList = findLunchItemsUseCasePort.findLunchItems(lunchItemType);
+        List<LunchItem> lunchItemList = lunchItemsControllerPort.findLunchItems(lunchItemType);
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItemList));
     }
 
     @PostMapping
     @Operation(summary = "Create a lunch item", description = "Create a lunch item")
     public ResponseEntity<LunchItemResponse> createLunchItem(@RequestBody LunchItemRequest lunchItemRequest) {
-        LunchItem lunchItem = createLunchItemUseCasePort.createLunchItem(lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest));
+        LunchItem lunchItem = lunchItemsControllerPort.createLunchItem(lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest));
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItem));
     }
 
     @DeleteMapping("/{lunchId}")
     @Operation(summary = "Delete a lunch order", description = "Delete a lunch order")
     public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId) {
-        Boolean deleteLunchItem = editLunchItemUseCasePort.editStatusLunchItem(lunchId);
+        Boolean deleteLunchItem = lunchItemsControllerPort.editStatusLunchItem(lunchId);
         return ResponseEntity.ok(deleteLunchItem);
     }
 
@@ -58,7 +54,7 @@ public class LunchItemsController {
     @Operation(summary = "Edit a lunch order", description = "Edit a lunch order")
     public ResponseEntity<LunchItemResponse> editLunchItem(@PathVariable Long lunchId, @RequestBody LunchItemRequest lunchItemRequest) {
         LunchItem toLunchItem = lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest);
-        LunchItem lunchItem = editLunchItemUseCasePort.editLunchItem(lunchId, toLunchItem);
+        LunchItem lunchItem = lunchItemsControllerPort.editLunchItem(lunchId, toLunchItem);
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItem));
     }
 }

@@ -1,5 +1,9 @@
 package com.challenge.fastfood.config;
 
+import com.challenge.fastfood.adapter.in.ClientControllerAdapter;
+import com.challenge.fastfood.adapter.in.LunchControllerAdapter;
+import com.challenge.fastfood.adapter.in.LunchItemsControllerAdapter;
+import com.challenge.fastfood.adapter.in.PaymentControllerAdapter;
 import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.client.SaveClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.lunch.FindLunchAdapterPort;
@@ -21,6 +25,33 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
+
+    @Bean
+    public ClientControllerAdapter createClientControllerAdapter(
+            CreateClientUseCase clientUseCase,
+            FindClientUseCase findClientUseCase) {
+        return new ClientControllerAdapter(clientUseCase, findClientUseCase);
+    }
+
+    @Bean
+    public LunchControllerAdapter createLunchControllerAdapter(
+            CreateLunchUseCase createLunchUseCase,
+            FindLunchUseCase findLunchUseCase) {
+        return new LunchControllerAdapter(createLunchUseCase, findLunchUseCase);
+    }
+
+    @Bean
+    public LunchItemsControllerAdapter createLunchItemsControllerAdapter(
+            CreateLunchItemUseCase createLunchItemUseCase,
+            EditLunchItemUseCase editLunchItemUseCase,
+            FindLunchItemsUseCase findLunchItemsUseCase) {
+        return new LunchItemsControllerAdapter(createLunchItemUseCase, editLunchItemUseCase, findLunchItemsUseCase);
+    }
+
+    @Bean
+    public PaymentControllerAdapter createPaymentControllerAdapter(PaymentUseCase paymentUseCase) {
+        return new PaymentControllerAdapter(paymentUseCase);
+    }
 
     @Bean
     public CreateClientUseCase createClientUseCase(SaveClientAdapterPort saveClientAdapterPort) {
