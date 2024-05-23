@@ -18,44 +18,38 @@ public class EditLunchItemsAdapter implements EditLunchItemAdapterPort {
 
     @Override
     @Transactional
-    public Boolean editStatusLunchItem(Long idLunchItem) {
-        var status = false;
+    public Boolean editStatusLunchItem(Long idLunchItem, Boolean status) {
         try {
-            if(idLunchItem != null && lunchItemsRepository.existsById(idLunchItem)){
-                LunchItemEntity lunchItemsRepositoryById = lunchItemsRepository.findById(idLunchItem)
-                        .orElse(null);
-                lunchItemsRepositoryById.setStatus(false);
-                LunchItemEntity itemEntity = lunchItemsRepository.save(lunchItemsRepositoryById);
-                status = !itemEntity.getStatus();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            LunchItemEntity lunchItemsRepositoryById = lunchItemsRepository
+                    .findById(idLunchItem)
+                    .orElseThrow(() -> new LunchItemException("Lunch item not found." ));
+            lunchItemsRepositoryById.setStatus(status);
+            lunchItemsRepository.save(lunchItemsRepositoryById);
+            return true;
 
-        return status;
+    }   catch (Exception e) {
+            throw new LunchItemException(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
-    public LunchItem editLunchItem(Long idLunchItem, LunchItem lunchItem) {
+    public LunchItem editLunchItem(LunchItem lunchItem) {
         LunchItem toLunchItem ;
         try {
-            if(idLunchItem != null && lunchItemsRepository.existsById(idLunchItem)){
+            LunchItemEntity lunchItemsRepositoryById = lunchItemsRepository.findById(lunchItem.getId())
+                    .orElseThrow(() -> new LunchItemException("Lunch item not found." ));
 
-                LunchItemEntity lunchItemsRepositoryById = lunchItemsRepository.findById(idLunchItem)
-                        .orElseThrow(() -> new LunchItemException("Lunch item not found." ));
+            lunchItemsRepositoryById.setName(lunchItem.getName());
+            lunchItemsRepositoryById.setPrice(lunchItem.getPrice());
+            lunchItemsRepositoryById.setType(lunchItem.getType());
+            lunchItemsRepositoryById.setStatus(lunchItem.getStatus());
 
-                lunchItemsRepositoryById.setName(lunchItem.getName());
-                lunchItemsRepositoryById.setPrice(lunchItem.getPrice());
-                LunchItemEntity lunchItemEntity = lunchItemsRepository.save(lunchItemsRepositoryById);
-                 toLunchItem = lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
+            LunchItemEntity lunchItemEntity = lunchItemsRepository.save(lunchItemsRepositoryById);
+            toLunchItem = lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
 
-            } else{
-                throw new LunchItemException("Lunch Item not found");
-            }
         } catch (Exception e) {
-            throw new RuntimeException(e);
-
+            throw new LunchItemException(e.getMessage());
         }
         return toLunchItem;
     }

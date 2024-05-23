@@ -11,4 +11,5 @@ public interface LunchItemsRepository extends JpaRepository<LunchItemEntity, Lon
 
     List<LunchItemEntity> findByTypeAndStatusTrue(LunchItemType lunchItemType);
     LunchItemEntity findByNameAndStatusTrue(String name);
+    LunchItemEntity findByIdAndStatusTrue(Long id);
 }

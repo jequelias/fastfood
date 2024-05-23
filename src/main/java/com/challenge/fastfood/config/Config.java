@@ -4,6 +4,7 @@ import com.challenge.fastfood.adapter.in.ClientControllerAdapter;
 import com.challenge.fastfood.adapter.in.LunchControllerAdapter;
 import com.challenge.fastfood.adapter.in.LunchItemsControllerAdapter;
 import com.challenge.fastfood.adapter.in.PaymentControllerAdapter;
+import com.challenge.fastfood.adapter.out.repository.lunchItem.FindLunchItemsAdapter;
 import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.client.SaveClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.lunch.FindLunchAdapterPort;
@@ -53,9 +54,10 @@ public class Config {
         return new PaymentControllerAdapter(paymentUseCase);
     }
 
+
     @Bean
-    public CreateClientUseCase createClientUseCase(SaveClientAdapterPort saveClientAdapterPort) {
-        return new CreateClientUseCase(saveClientAdapterPort);
+    public CreateClientUseCase createClientUseCase(SaveClientAdapterPort saveClientAdapterPort, FindClientAdapterPort findClientAdapterPort) {
+        return new CreateClientUseCase(saveClientAdapterPort, findClientAdapterPort);
     }
 
     @Bean
@@ -85,8 +87,8 @@ public class Config {
     }
 
     @Bean
-    public EditLunchItemUseCase deleteLunchItemUseCase(EditLunchItemAdapterPort deleteLunchItemAdapterPort) {
-        return new EditLunchItemUseCase(deleteLunchItemAdapterPort);
+    public EditLunchItemUseCase editLunchItemUseCase(EditLunchItemAdapterPort deleteLunchItemAdapterPort, FindLunchItemsAdapter findLunchItemsAdapter) {
+        return new EditLunchItemUseCase(deleteLunchItemAdapterPort,findLunchItemsAdapter );
     }
 
     @Bean

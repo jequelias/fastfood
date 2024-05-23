@@ -14,6 +14,9 @@ public class CreateLunchItemUseCase implements CreateLunchItemUseCasePort {
 
     @Override
     public LunchItem createLunchItem(LunchItem lunchItem) {
+
+        lunchItem.setStatus(true);
+
         return saveLunchItemAdapterPort.saveLunchItem(lunchItem);
     }
 }

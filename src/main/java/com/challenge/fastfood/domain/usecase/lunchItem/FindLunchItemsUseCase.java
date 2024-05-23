@@ -1,5 +1,6 @@
 package com.challenge.fastfood.domain.usecase.lunchItem;
 
+import com.challenge.fastfood.config.exception.LunchItemException;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.entities.LunchItemType;
 import com.challenge.fastfood.domain.ports.in.lunchItem.FindLunchItemsUseCasePort;
@@ -22,6 +23,11 @@ public class FindLunchItemsUseCase implements FindLunchItemsUseCasePort {
 
     @Override
     public LunchItem findLunchItemByName(String name) {
+
+        if (name == null) {
+            throw new LunchItemException("Invalid lunch item, name is required");
+        }
+
         return findLunchItemsAdapterPort.findLunchItemByName(name);
     }
 }

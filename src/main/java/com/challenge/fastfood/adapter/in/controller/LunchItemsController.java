@@ -45,8 +45,8 @@ public class LunchItemsController {
 
     @DeleteMapping("/{lunchId}")
     @Operation(summary = "Delete a lunch order", description = "Delete a lunch order")
-    public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId) {
-        Boolean deleteLunchItem = lunchItemsControllerPort.editStatusLunchItem(lunchId);
+    public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId, @RequestParam Boolean status){
+        Boolean deleteLunchItem = lunchItemsControllerPort.editStatusLunchItem(lunchId, status);
         return ResponseEntity.ok(deleteLunchItem);
     }
 

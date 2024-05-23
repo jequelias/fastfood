@@ -31,8 +31,8 @@ public class LunchItemsControllerAdapter implements LunchItemsControllerPort {
     }
 
     @Override
-    public Boolean editStatusLunchItem(Long idLunchItem) {
-        return editLunchItemUseCase.editStatusLunchItem(idLunchItem);
+    public Boolean editStatusLunchItem(Long idLunchItem, Boolean status) {
+        return editLunchItemUseCase.editStatusLunchItem(idLunchItem,status);
     }
 
     @Override

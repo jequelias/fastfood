@@ -6,7 +6,7 @@ import com.challenge.fastfood.domain.entities.LunchItem;
 
 public interface EditLunchItemAdapterPort {
 
-    Boolean editStatusLunchItem(Long idLunchItem);
+    Boolean editStatusLunchItem(Long idLunchItem,Boolean status);
 
-    LunchItem editLunchItem(Long idLunchItem, LunchItem lunchItem);
+    LunchItem editLunchItem( LunchItem lunchItem);
 }

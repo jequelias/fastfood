@@ -15,13 +15,7 @@ public class FindClientAdapter implements FindClientAdapterPort {
     private final ClientMapper clientMapper;
     @Override
     public Client findClient(String name, String cpf, String email) {
-
         ClientEntity clientEntity = clientRepository.findByNameOrCpfOrEmail(name, cpf, email);
-
-        if(clientEntity == null) {
-            throw new ClientException("Client not found.");
-        }
-
         return clientMapper.clientEntityToClient(clientEntity);
     }
 

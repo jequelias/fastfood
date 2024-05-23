@@ -5,5 +5,5 @@ import com.challenge.fastfood.domain.entities.Lunch;
 
 public interface CreateLunchUseCasePort {
 
-    Lunch createLunch(LunchRequest lunchRequest);
+    Lunch createLunch(Lunch lunch);
 }

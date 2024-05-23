@@ -22,7 +22,7 @@ public class LunchControllerAdapter implements LunchControllerPort {
 
     @Override
     public Lunch createLunch(LunchRequest lunchRequest) {
-        return createLunchUseCase.createLunch(lunchRequest);
+        return createLunchUseCase.createLunch(null);
     }
 
     @Override

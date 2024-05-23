@@ -19,10 +19,6 @@ public class SaveClientAdapter implements SaveClientAdapterPort {
     @Transactional
     public Client saveClient(Client client) {
 
-        clientRepository.findByCpf(client.getCpf())
-                .ifPresent(clientEntity -> {
-                    throw new ClientException("Client already exists.");
-                });
 
         ClientEntity clientEntity = clientMapper.clientToClientEntity(client);
         ClientEntity clientEntitySaved = clientRepository.save(clientEntity);
