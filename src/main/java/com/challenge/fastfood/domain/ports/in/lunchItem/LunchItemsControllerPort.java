@@ -8,7 +8,7 @@ import java.util.List;
 public interface LunchItemsControllerPort {
 
     LunchItem createLunchItem(LunchItem lunchItem);
-    Boolean editStatusLunchItem(Long idLunchItem, Boolean status);
+    Boolean editStatusLunchItem(Long idLunchItem);
     LunchItem editLunchItem(Long idLunchItem, LunchItem lunchItem);
     List<LunchItem> findLunchItems(LunchItemType type);
     LunchItem findLunchItemByName(String name);

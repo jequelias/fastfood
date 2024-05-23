@@ -37,16 +37,11 @@ public class EditLunchItemsAdapter implements EditLunchItemAdapterPort {
     public LunchItem editLunchItem(LunchItem lunchItem) {
         LunchItem toLunchItem ;
         try {
-            LunchItemEntity lunchItemsRepositoryById = lunchItemsRepository.findById(lunchItem.getId())
-                    .orElseThrow(() -> new LunchItemException("Lunch item not found." ));
 
-            lunchItemsRepositoryById.setName(lunchItem.getName());
-            lunchItemsRepositoryById.setPrice(lunchItem.getPrice());
-            lunchItemsRepositoryById.setType(lunchItem.getType());
-            lunchItemsRepositoryById.setStatus(lunchItem.getStatus());
-
-            LunchItemEntity lunchItemEntity = lunchItemsRepository.save(lunchItemsRepositoryById);
-            toLunchItem = lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
+            LunchItemEntity lunchItemEntity = lunchItemMapper.lunchItemToLunchItemEntity(lunchItem);
+            lunchItemEntity.setStatus(true);
+            LunchItemEntity lunchItemSave = lunchItemsRepository.save(lunchItemEntity);
+            toLunchItem = lunchItemMapper.lunchItemEntityToLunchItem(lunchItemSave);
 
         } catch (Exception e) {
             throw new LunchItemException(e.getMessage());

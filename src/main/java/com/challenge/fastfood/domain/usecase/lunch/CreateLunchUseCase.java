@@ -14,7 +14,7 @@ public class CreateLunchUseCase implements CreateLunchUseCasePort {
     }
 
     @Override
-    public Lunch createLunch(Lunch lunchRequest) {
-        return saveLunchAdapterPort.saveLunch(null);
+    public Lunch createLunch(Lunch lunch) {
+        return saveLunchAdapterPort.saveLunch(lunch);
     }
 }

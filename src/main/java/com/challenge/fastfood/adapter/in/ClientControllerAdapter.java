@@ -5,6 +5,8 @@ import com.challenge.fastfood.domain.ports.in.client.ClientControllerPort;
 import com.challenge.fastfood.domain.usecase.client.CreateClientUseCase;
 import com.challenge.fastfood.domain.usecase.client.FindClientUseCase;
 
+import java.util.List;
+
 public class ClientControllerAdapter implements ClientControllerPort {
 
     private final CreateClientUseCase createClientUseCase;
@@ -26,5 +28,11 @@ public class ClientControllerAdapter implements ClientControllerPort {
     @Override
     public Client findClient(String name, String cpf, String email) {
         return findClientUseCase.findClient(name, cpf, email);
+    }
+
+    @Override
+    public List<Client> findAllClient(String name, String cpf, String email) {
+        return findClientUseCase.findClients(name, cpf, email);
+
     }
 }

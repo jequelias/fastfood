@@ -1,12 +1,14 @@
 package com.challenge.fastfood.adapter.out.repository.lunch;
 
 import com.challenge.fastfood.adapter.in.controller.request.LunchRequest;
+import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchMapper;
 import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemEntity;
 import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemsRepository;
 import com.challenge.fastfood.adapter.out.repository.client.ClientEntity;
 import com.challenge.fastfood.adapter.out.repository.client.ClientRepository;
 import com.challenge.fastfood.domain.entities.Lunch;
+import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.ports.out.lunch.SaveLunchAdapterPort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,41 +25,43 @@ public class SaveLunchAdapter implements SaveLunchAdapterPort {
     private final LunchItemsRepository lunchItemRepository;
     private final ClientRepository clientRepository;
     private final LunchMapper lunchMapper;
+    private final LunchItemMapper lunchItemMapper;
 
     @Override
     @Transactional
-    public Lunch saveLunch(LunchRequest lunchRequest) {
+    public Lunch saveLunch(Lunch lunch) {
 
         List<LunchItemEntity> lunchItems = new ArrayList<>();
         ClientEntity clientEntity = null;
 
-        mapperLunch(lunchRequest.drink(), lunchItems);
-        mapperLunch(lunchRequest.snack(), lunchItems);
-        mapperLunch(lunchRequest.accompaniment(), lunchItems);
-        mapperLunch(lunchRequest.dessert(), lunchItems);
+        for(LunchItem item : lunch.getLunchItems()){
+            LunchItemEntity lunchItemEntity = lunchItemMapper.lunchItemToLunchItemEntity(item);
+            lunchItems.add(lunchItemEntity);
+        }
 
-        clientEntity = getClientEntity(lunchRequest, clientEntity);
 
-        LunchEntity lunch = new LunchEntity();
-        lunch.setLunchItems(lunchItems);
-        lunch.setClient(clientEntity);
-        lunch.setStatus("PENDENTE");
+        clientEntity = getClientEntity(lunch, clientEntity);
 
-        LunchEntity lunchEntitySaved = lunchRepository.save(lunch);
+        LunchEntity lunchEntity = new LunchEntity();
+        lunchEntity.setLunchItems(lunchItems);
+        lunchEntity.setClient(clientEntity);
+        lunchEntity.setStatus("PENDENTE");
+        double price = 0;
+        for (LunchItemEntity lunchItem : lunchItems) {
+            price += lunchItem.getPrice();
+        }
+        lunchEntity.setPriceTotal(price);
+        LunchEntity lunchEntitySaved = lunchRepository.save(lunchEntity);
 
         return lunchMapper.lunchEntityToLunch(lunchEntitySaved);
     }
 
-    private ClientEntity getClientEntity(LunchRequest lunchRequest, ClientEntity clientEntity) {
-        if(lunchRequest.clientId() != null) {
-            clientEntity = clientRepository.findById(lunchRequest.clientId()).orElse(null);
+    private ClientEntity getClientEntity(Lunch lunch, ClientEntity clientEntity) {
+        if(lunch.getClient().getId() != null) {
+            clientEntity = clientRepository.findById(lunch.getClient().getId() ).orElse(null);
         }
         return clientEntity;
     }
 
-    private void mapperLunch(List<Long> lunchRequest, List<LunchItemEntity> lunchItems) {
-        for (Long lunchItem : lunchRequest) {
-            lunchItemRepository.findById(lunchItem).ifPresent(lunchItems::add);
-        }
-    }
+
 }

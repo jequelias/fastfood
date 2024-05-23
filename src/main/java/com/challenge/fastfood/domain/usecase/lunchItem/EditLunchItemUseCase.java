@@ -10,6 +10,7 @@ import com.challenge.fastfood.domain.ports.out.lunchItem.EditLunchItemAdapterPor
 
 public class EditLunchItemUseCase implements EditLunchItemUseCasePort {
 
+    public static final boolean STATUS = false;
     private final EditLunchItemAdapterPort editLunchItemAdapterPort;
     private final FindLunchItemsAdapter findLunchItemsAdapter;
 
@@ -19,9 +20,9 @@ public class EditLunchItemUseCase implements EditLunchItemUseCasePort {
     }
 
     @Override
-    public Boolean editStatusLunchItem(Long idLunchItem, Boolean status) {
+    public Boolean editStatusLunchItem(Long idLunchItem) {
 
-        if (idLunchItem == null || status == null) {
+        if (idLunchItem == null ) {
             throw new LunchItemException("idLunchItem and status are required");
         }
 
@@ -31,15 +32,7 @@ public class EditLunchItemUseCase implements EditLunchItemUseCasePort {
             throw new LunchItemException("Lunch item not found");
         }
 
-        if (status == lunchItem.getStatus()) {
-            throw new LunchItemException("Status is already " + status);
-        }
-
-        if (status) {
-            throw new LunchItemException("Status can't be true");
-        }
-
-        return editLunchItemAdapterPort.editStatusLunchItem(idLunchItem, status);
+        return editLunchItemAdapterPort.editStatusLunchItem(idLunchItem, STATUS);
     }
 
     @Override

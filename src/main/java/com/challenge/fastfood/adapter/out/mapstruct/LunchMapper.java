@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LunchMapper {
 
+    @Mapping(target = "lunchItems", source = "lunchItems")
     Lunch lunchEntityToLunch(LunchEntity lunchEntity);
 
     List<Lunch> lunchsEntityToLunchs(List<LunchEntity> lunchEntity);

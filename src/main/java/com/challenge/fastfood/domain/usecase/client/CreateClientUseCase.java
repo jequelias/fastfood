@@ -6,6 +6,8 @@ import com.challenge.fastfood.domain.ports.in.client.CreateClientUseCasePort;
 import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.client.SaveClientAdapterPort;
 
+import java.util.List;
+
 public class CreateClientUseCase  implements CreateClientUseCasePort {
 
     private final SaveClientAdapterPort saveClientAdapterPort;
@@ -35,11 +37,13 @@ public class CreateClientUseCase  implements CreateClientUseCasePort {
         }
 
         Client findClient = findClientAdapterPort
-                .findClient(client.getName(), client.getCpf(), client.getEmail());
+                .findClient(null, client.getCpf(), client.getEmail());
 
 
-        if (findClient.getCpf() != null || findClient.getEmail() != null) {
-            throw new ClientException("Client already exists");
+        if(findClient != null ){
+            if (findClient.getCpf() != null || findClient.getEmail() != null) {
+                throw new ClientException("Client already exists");
+            }
         }
 
         return saveClientAdapterPort.saveClient(client);

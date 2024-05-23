@@ -37,8 +37,9 @@ public class Config {
     @Bean
     public LunchControllerAdapter createLunchControllerAdapter(
             CreateLunchUseCase createLunchUseCase,
-            FindLunchUseCase findLunchUseCase) {
-        return new LunchControllerAdapter(createLunchUseCase, findLunchUseCase);
+            FindLunchUseCase findLunchUseCase,
+            FindLunchItemsAdapterPort findLunchItemsAdapterPort) {
+        return new LunchControllerAdapter(createLunchUseCase, findLunchUseCase,findLunchItemsAdapterPort);
     }
 
     @Bean
@@ -66,8 +67,8 @@ public class Config {
     }
 
     @Bean
-    public CreateLunchItemUseCase createLunchItemUseCase(SaveLunchItemAdapterPort saveLunchItemAdapterPort) {
-        return new CreateLunchItemUseCase(saveLunchItemAdapterPort);
+    public CreateLunchItemUseCase createLunchItemUseCase(SaveLunchItemAdapterPort saveLunchItemAdapterPort,FindLunchItemsAdapterPort findLunchItemsAdapterPort) {
+        return new CreateLunchItemUseCase(saveLunchItemAdapterPort,findLunchItemsAdapterPort);
     }
 
     @Bean

@@ -5,5 +5,5 @@ import com.challenge.fastfood.domain.entities.Lunch;
 
 public interface SaveLunchAdapterPort {
 
-    Lunch saveLunch(LunchRequest lunchRequest);
+    Lunch saveLunch(Lunch lunch);
 }

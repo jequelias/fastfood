@@ -18,6 +18,7 @@ public interface LunchItemMapper {
     LunchItemResponse lunchItemToLunchItemResponse(LunchItem lunchItem);
     List<LunchItemResponse> lunchItemToLunchItemResponse(List<LunchItem> lunchItems);
 
+    @Mapping(target = "status", source = "status")
     LunchItemEntity lunchItemToLunchItemEntity(LunchItem lunchItem);
     List<LunchItemEntity> lunchItemToLunchItemEntity(List<LunchItem> lunchItems);
 

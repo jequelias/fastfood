@@ -24,7 +24,7 @@ public class FindLunchItemsAdapter implements FindLunchItemsAdapterPort {
 
     @Override
     public LunchItem findLunchItemByName(String name) {
-        LunchItemEntity lunchItemEntity = lunchItemsRepository.findByNameAndStatusTrue(name);
+        LunchItemEntity lunchItemEntity = lunchItemsRepository.findByName(name);
         return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
     }
 
