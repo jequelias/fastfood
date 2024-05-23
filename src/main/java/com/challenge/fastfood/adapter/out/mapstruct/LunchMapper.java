@@ -13,6 +13,7 @@ import java.util.List;
 public interface LunchMapper {
 
     @Mapping(target = "lunchItems", source = "lunchItems")
+    @Mapping(target = "priceTotal", source = "priceTotal")
     Lunch lunchEntityToLunch(LunchEntity lunchEntity);
 
     List<Lunch> lunchsEntityToLunchs(List<LunchEntity> lunchEntity);

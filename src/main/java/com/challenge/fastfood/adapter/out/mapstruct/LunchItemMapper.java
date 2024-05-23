@@ -1,5 +1,6 @@
 package com.challenge.fastfood.adapter.out.mapstruct;
 
+import com.challenge.fastfood.adapter.in.controller.request.LunchItemEditRequest;
 import com.challenge.fastfood.adapter.in.controller.request.LunchItemRequest;
 import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 public interface LunchItemMapper {
 
     LunchItem lunchItemRequestToLunchItem(LunchItemRequest lunchItemRequest);
+    LunchItem lunchItemEditRequestToLunchItem(LunchItemEditRequest lunchItemRequest);
 
     LunchItemResponse lunchItemToLunchItemResponse(LunchItem lunchItem);
     List<LunchItemResponse> lunchItemToLunchItemResponse(List<LunchItem> lunchItems);

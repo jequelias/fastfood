@@ -8,5 +8,5 @@ public interface EditLunchItemAdapterPort {
 
     Boolean editStatusLunchItem(Long idLunchItem,Boolean status);
 
-    LunchItem editLunchItem( LunchItem lunchItem);
+    LunchItem editLunchItem( LunchItem lunchItem, Long idLunchItem);
 }

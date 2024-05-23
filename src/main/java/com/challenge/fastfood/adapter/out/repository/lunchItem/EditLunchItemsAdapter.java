@@ -34,12 +34,14 @@ public class EditLunchItemsAdapter implements EditLunchItemAdapterPort {
 
     @Override
     @Transactional
-    public LunchItem editLunchItem(LunchItem lunchItem) {
+    public LunchItem editLunchItem(LunchItem lunchItem, Long idLunchItem) {
         LunchItem toLunchItem ;
         try {
 
-            LunchItemEntity lunchItemEntity = lunchItemMapper.lunchItemToLunchItemEntity(lunchItem);
+            LunchItemEntity lunchItemEntity = lunchItemsRepository.findById(idLunchItem).orElseThrow(() -> new LunchItemException("Lunch item not found." ));
             lunchItemEntity.setStatus(true);
+            lunchItemEntity.setType(lunchItem.getType());
+            lunchItemEntity.setPrice(lunchItem.getPrice());
             LunchItemEntity lunchItemSave = lunchItemsRepository.save(lunchItemEntity);
             toLunchItem = lunchItemMapper.lunchItemEntityToLunchItem(lunchItemSave);
 

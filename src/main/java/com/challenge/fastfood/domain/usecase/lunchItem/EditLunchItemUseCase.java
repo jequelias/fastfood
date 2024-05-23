@@ -48,23 +48,12 @@ public class EditLunchItemUseCase implements EditLunchItemUseCasePort {
             throw new LunchItemException("Lunch item not found");
         }
 
-        if (lunchItem.getName() == null
-                || lunchItem.getPrice() == null
-                || lunchItem.getType() == null) {
-            throw new LunchItemException("Name, price and type are required");
-        }
-
         if (lunchItem.getPrice() <= 0) {
             throw new LunchItemException("Price must be greater than 0");
         }
 
-        if (lunchItem.getName().equals(lunchItemById.getName())
-                && lunchItem.getPrice().equals(lunchItemById.getPrice())
-                && lunchItem.getType().equals(lunchItemById.getType())) {
-            throw new LunchItemException("Lunch item is already updated");
-        }
 
-        return editLunchItemAdapterPort.editLunchItem(lunchItem);
+        return editLunchItemAdapterPort.editLunchItem(lunchItem,idLunchItem);
     }
 
 }
