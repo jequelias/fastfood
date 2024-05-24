@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   mysql:
     image: mysql:8.0
@@ -15,6 +13,8 @@ services:
       - "3306:3306"
     networks:
       - local-network
+    healthcheck:
+      test: /usr/bin/mysql -uroot -prootpassword -e "SHOW DATABASES"
 
   adminer:
     image: adminer
@@ -24,6 +24,7 @@ services:
       - "8080:8080"
     networks:
       - local-network
+
   app:
     build:
       context: .
@@ -35,7 +36,8 @@ services:
     networks:
       - local-network
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
 networks:
   local-network:
