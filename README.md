@@ -1,7 +1,7 @@
 # Tech-Challenge Fiap - Software Architecture
 
 ## Introdução
-O projeto foi desenvolvido no âmbito da pós graduação em *Software Architecture* da Fiap. Dado um contexto e um problema (descritos abaixo), foi desenvolvida uma aplicação em Java Spring Boot, utilizando os conteúdos aprendidos no curso.
+O projeto foi desenvolvido no âmbito da pós graduação em *Software Architecture* da Fiap. Dado um contexto e um problema (descritos abaixo), foi desenvolvida uma aplicação *back-end* * em Java Spring Boot, utilizando os conteúdos aprendidos no curso.
 
 ### Contexto 
 Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
@@ -35,13 +35,14 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 - Observação: A aplicação deve ser entregue com um Dockerfile configurado para executá-la corretamente, e um docker-compose.yml para subir o ambiente completo.
               
 ### Desenvolvimento
-
+Foi desenvolvida uma aplicação *back-end* em Java Spring Boot, contendo um conjunto de APIs, um banco de dados não-relacional MySQL, um Dockerfile e um Docker-compose. Utilizou-se os princípios da arquitetura hexagonal para estruturar a aplicação de maneira modularizada, coesa, e escalável.
 
 ### Roadmap
 - [x] Criação do **modelo Event Storming** utilizando a ferramenta *Miro*: <https://miro.com/welcomeonboard/a3FCUDA1U2l2eTREV1h5ekRyaUJIdlhGN0R0eno3UExuelBEZ3dXWmwxSmFGajZIZnZneXkxNWc3R05yVWdacXwzNDU4NzY0NTg3MDUxMjA4Nzc4fDI=?share_link_id=966006482007>
 - [x] Desenvolvimento do projeto base Utilizando Java + SpringBoot
     - [x] **Cadastro do Cliente**: Os clientes possuirão uma interface de cadastro e poderão optar se cadastrar utilizando nome, e-mail e CPF.
     - [x] **Identificação do Cliente via CPF**: Os clientes possuirão uma interface de identificação e poderão se identificar utilizando o CPF.
+    - [X] **Criar, editar e remover produtos**: Será possível criar, editar e remover produtos e em cada categoria (lanche, bebida e sobremesa)
     - [x] **Buscar produtos por categoria**: Os clientes possuirão uma interface de pedido e poderão buscar os produtos por categoria (lanche, bebida ou sobremesa)
     - [x] **Fake checkout, apenas enviar os produtos escolhidos para a fila**
 - [x] Criação do banco de dados não relacional utilizando o MySQL
