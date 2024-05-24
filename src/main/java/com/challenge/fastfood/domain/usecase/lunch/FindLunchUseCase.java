@@ -16,6 +16,11 @@ public class FindLunchUseCase implements FindLunchUseCasePort {
 
     @Override
     public List<Lunch> findLunchs() {
-       return findLunchAdapterPort.findLunchs();
+        return findLunchAdapterPort.findLunchs();
+    }
+
+    @Override
+    public Lunch findLunchById(Long id) {
+        return findLunchAdapterPort.findLunchById(id);
     }
 }

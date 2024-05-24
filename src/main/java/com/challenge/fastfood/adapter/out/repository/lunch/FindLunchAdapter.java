@@ -21,4 +21,10 @@ public class FindLunchAdapter implements FindLunchAdapterPort {
         List<LunchEntity> lunchRepositoryAll = lunchRepository.findAll();
         return lunchMapper.lunchsEntityToLunchs(lunchRepositoryAll);
     }
+
+    @Override
+    public Lunch findLunchById(Long id) {
+        LunchEntity lunchRepositoryAll = lunchRepository.findById(id).orElse(null);
+        return lunchMapper.lunchEntityToLunch(lunchRepositoryAll);
+    }
 }

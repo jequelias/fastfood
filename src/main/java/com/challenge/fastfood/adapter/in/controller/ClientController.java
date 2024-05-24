@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/client")
 @Tag(name = "Client", description = "Client Controller")
@@ -30,14 +32,14 @@ public class ClientController {
 
     @GetMapping
     @Operation(summary = "Get client", description = "Get client")
-    public ResponseEntity<ClientResponse> getClient(@RequestParam(required = false) String name,
-                                                    @RequestParam(required = false) String cpf,
-                                                    @RequestParam(required = false) String email) {
-        Client client = clientControllerPort.findClient(
+    public ResponseEntity<List<ClientResponse>> getClient(@RequestParam(required = false) String name,
+                                                          @RequestParam(required = false) String cpf,
+                                                          @RequestParam(required = false) String email) {
+        List<Client> client = clientControllerPort.findAllClient(
                 name,
                 cpf,
                 email );
-        return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
+        return ResponseEntity.ok(clientMapper.clientListToClientResponse(client));
     }
 
 }

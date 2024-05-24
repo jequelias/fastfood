@@ -1,5 +1,6 @@
 package com.challenge.fastfood.adapter.in.controller;
 
+import com.challenge.fastfood.adapter.in.controller.request.LunchItemEditRequest;
 import com.challenge.fastfood.adapter.in.controller.request.LunchItemRequest;
 import com.challenge.fastfood.adapter.in.controller.response.LunchItemResponse;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
@@ -45,15 +46,15 @@ public class LunchItemsController {
 
     @DeleteMapping("/{lunchId}")
     @Operation(summary = "Delete a lunch order", description = "Delete a lunch order")
-    public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId) {
+    public ResponseEntity<Boolean> deleteLunch(@PathVariable Long lunchId){
         Boolean deleteLunchItem = lunchItemsControllerPort.editStatusLunchItem(lunchId);
         return ResponseEntity.ok(deleteLunchItem);
     }
 
     @PutMapping("/{lunchId}")
     @Operation(summary = "Edit a lunch order", description = "Edit a lunch order")
-    public ResponseEntity<LunchItemResponse> editLunchItem(@PathVariable Long lunchId, @RequestBody LunchItemRequest lunchItemRequest) {
-        LunchItem toLunchItem = lunchItemMapper.lunchItemRequestToLunchItem(lunchItemRequest);
+    public ResponseEntity<LunchItemResponse> editLunchItem(@PathVariable Long lunchId, @RequestBody LunchItemEditRequest lunchItemRequest) {
+        LunchItem toLunchItem = lunchItemMapper.lunchItemEditRequestToLunchItem(lunchItemRequest);
         LunchItem lunchItem = lunchItemsControllerPort.editLunchItem(lunchId, toLunchItem);
         return ResponseEntity.ok(lunchItemMapper.lunchItemToLunchItemResponse(lunchItem));
     }

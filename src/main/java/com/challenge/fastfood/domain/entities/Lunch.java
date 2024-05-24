@@ -8,27 +8,31 @@ import java.util.List;
 public class Lunch {
 
     private Client client;
-    private List<LunchItemEntity> lunchItems;
+    private List<LunchItem> lunchItems;
     private double priceTotal;
     private String status;
     private Long id;
 
-    public Lunch(Client client, List<LunchItemEntity> lunchItems, Long id) {
+    public Lunch(Client client, List<LunchItem> lunchItems, Long id) {
         this.client = client;
         this.lunchItems = lunchItems;
         this.priceTotal = 0;
-        for (LunchItemEntity lunchItem : lunchItems) {
+        for (LunchItem lunchItem : lunchItems) {
             this.priceTotal += lunchItem.getPrice();
         }
         this.status = "PENDENTE";
         this.id = id;
     }
 
+    public Lunch(){
+
+    }
+
     public Client getClient() {
         return client;
     }
 
-    public List<LunchItemEntity> getLunchItems() {
+    public List<LunchItem> getLunchItems() {
             return lunchItems;
         }
 
@@ -48,13 +52,13 @@ public class Lunch {
             this.client = client;
         }
 
-    public void setLunchItems(List<LunchItemEntity> lunchItems) {
+    public void setLunchItems(List<LunchItem> lunchItems) {
             this.lunchItems = lunchItems;
         }
 
     public void setPriceTotal(double priceTotal) {
-            this.priceTotal = priceTotal;
-        }
+        this.priceTotal = priceTotal;
+    }
 
     public Long getId() {
         return id;

@@ -9,4 +9,5 @@ public interface FindLunchItemsAdapterPort {
 
     List<LunchItem> findLunchItems(LunchItemType lunchItemType);
     LunchItem findLunchItemByName(String name);
+    LunchItem findLunchItemById(Long id);
 }

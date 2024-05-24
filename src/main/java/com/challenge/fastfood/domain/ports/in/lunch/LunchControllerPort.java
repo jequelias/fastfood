@@ -8,4 +8,5 @@ import java.util.List;
 public interface LunchControllerPort {
     Lunch createLunch(LunchRequest lunchRequest);
     List<Lunch> findLunchs();
+    Lunch findLunchById(Long id);
 }

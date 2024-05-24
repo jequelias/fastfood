@@ -8,15 +8,20 @@ import com.challenge.fastfood.domain.entities.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
+import java.util.List;
+
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ClientMapper {
 
     Client clientRequestToClient(ClientRequest clientRequest);
 
     ClientResponse clientToClientResponse(Client client);
+    List<ClientResponse> clientListToClientResponse(List<Client> client);
 
     ClientEntity clientToClientEntity(Client client);
 
     Client clientEntityToClient(ClientEntity clientEntity);
+
+    List<Client> clientListEntityToClient(List<ClientEntity> clientEntity);
 
 }

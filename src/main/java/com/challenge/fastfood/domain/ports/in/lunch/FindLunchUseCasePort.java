@@ -7,4 +7,5 @@ import java.util.List;
 public interface FindLunchUseCasePort {
 
     List<Lunch> findLunchs();
+    Lunch findLunchById(Long id);
 }
