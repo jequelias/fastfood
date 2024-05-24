@@ -35,7 +35,7 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 - Observação: A aplicação deve ser entregue com um Dockerfile configurado para executá-la corretamente, e um docker-compose.yml para subir o ambiente completo.
               
 ### Desenvolvimento
-Foi desenvolvida uma aplicação *back-end* em Java Spring Boot, contendo um conjunto de APIs, um banco de dados não-relacional MySQL, um Dockerfile e um Docker-compose. Utilizou-se os princípios da arquitetura hexagonal para estruturar a aplicação de maneira modularizada, coesa, e escalável.
+Foi desenvolvida uma aplicação *back-end* em Java Spring Boot, contendo um conjunto de APIs, um banco de dados não-relacional MySQL, um Dockerfile e um Docker-compose. Utilizou-se os princípios da **arquitetura hexagonal** para estruturar a aplicação de maneira modularizada, coesa, e escalável.
 
 ### Roadmap
 - [x] Criação do **modelo Event Storming** utilizando a ferramenta *Miro*: <https://miro.com/welcomeonboard/a3FCUDA1U2l2eTREV1h5ekRyaUJIdlhGN0R0eno3UExuelBEZ3dXWmwxSmFGajZIZnZneXkxNWc3R05yVWdacXwzNDU4NzY0NTg3MDUxMjA4Nzc4fDI=?share_link_id=966006482007>
