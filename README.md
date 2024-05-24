@@ -37,13 +37,16 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 ### Desenvolvimento
 
 
-
 ### Roadmap
-- [ ] Criação do **modelo Event Storming** utilizando a ferramenta *Miro*: <https://miro.com/welcomeonboard/a3FCUDA1U2l2eTREV1h5ekRyaUJIdlhGN0R0eno3UExuelBEZ3dXWmwxSmFGajZIZnZneXkxNWc3R05yVWdacXwzNDU4NzY0NTg3MDUxMjA4Nzc4fDI=?share_link_id=966006482007>
-- [ ] Desenvolvimento do projeto base Utilizando Java + SpringBoot
-- [ ] Criação do banco de dados não relacional utilizando o MySQL
-- [ ] Criação do Dockerfile e Docker compose
-- [ ] Disponibilização de um Swagger para as APIs
+- [x] Criação do **modelo Event Storming** utilizando a ferramenta *Miro*: <https://miro.com/welcomeonboard/a3FCUDA1U2l2eTREV1h5ekRyaUJIdlhGN0R0eno3UExuelBEZ3dXWmwxSmFGajZIZnZneXkxNWc3R05yVWdacXwzNDU4NzY0NTg3MDUxMjA4Nzc4fDI=?share_link_id=966006482007>
+- [x] Desenvolvimento do projeto base Utilizando Java + SpringBoot
+    - [x] **Cadastro do Cliente**: Os clientes possuirão uma interface de cadastro e poderão optar se cadastrar utilizando nome, e-mail e CPF.
+    - [x] **Identificação do Cliente via CPF**: Os clientes possuirão uma interface de identificação e poderão se identificar utilizando o CPF.
+    - [x] **Buscar produtos por categoria**: Os clientes possuirão uma interface de pedido e poderão buscar os produtos por categoria (lanche, bebida ou sobremesa)
+    - [x] **Fake checkout, apenas enviar os produtos escolhidos para a fila**
+- [x] Criação do banco de dados não relacional utilizando o MySQL
+- [x] Criação do Dockerfile e Docker compose
+- [x] Disponibilização de um Swagger para as APIs
 
 ### Funcionamento
 
