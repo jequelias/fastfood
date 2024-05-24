@@ -18,7 +18,12 @@ public class FindLunchItemsAdapter implements FindLunchItemsAdapterPort {
 
     @Override
     public List<LunchItem> findLunchItems(LunchItemType type) {
-        List<LunchItemEntity> lunchItemEntity = lunchItemsRepository.findByTypeAndStatusTrue(type);
+        List<LunchItemEntity> lunchItemEntity;
+        if (type == null) {
+            lunchItemEntity = lunchItemsRepository.findByStatusTrue();
+        } else {
+            lunchItemEntity = lunchItemsRepository.findByTypeAndStatusTrue(type);
+        }
         return lunchItemMapper.lunchItemEntityToLunchItem(lunchItemEntity);
     }
 

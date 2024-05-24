@@ -1,13 +1,10 @@
 package com.challenge.fastfood.adapter.in;
 
 import com.challenge.fastfood.adapter.in.controller.request.LunchRequest;
-import com.challenge.fastfood.adapter.out.repository.client.ClientEntity;
-import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemEntity;
 import com.challenge.fastfood.domain.entities.Client;
 import com.challenge.fastfood.domain.entities.Lunch;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.ports.in.lunch.LunchControllerPort;
-import com.challenge.fastfood.domain.ports.out.lunch.FindLunchAdapterPort;
 import com.challenge.fastfood.domain.ports.out.lunchItem.FindLunchItemsAdapterPort;
 import com.challenge.fastfood.domain.usecase.lunch.CreateLunchUseCase;
 import com.challenge.fastfood.domain.usecase.lunch.FindLunchUseCase;
@@ -40,10 +37,12 @@ public class LunchControllerAdapter implements LunchControllerPort {
         mapperLunch(lunchRequest.dessert(), lunchItems);
 
         Lunch lunch = new Lunch();
-        Client client = new Client();
-        client.setId(lunchRequest.clientId());
+        if (lunchRequest.clientId() != null) {
+            Client client = new Client();
+            client.setId(lunchRequest.clientId());
+            lunch.setClient(client);
+        }
         lunch.setLunchItems(lunchItems);
-        lunch.setClient(client);
 
         return createLunchUseCase.createLunch(lunch);
     }
@@ -60,5 +59,10 @@ public class LunchControllerAdapter implements LunchControllerPort {
     @Override
     public List<Lunch> findLunchs() {
         return findLunchUseCase.findLunchs();
+    }
+
+    @Override
+    public Lunch findLunchById(Long id) {
+        return findLunchUseCase.findLunchById(id);
     }
 }

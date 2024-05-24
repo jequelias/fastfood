@@ -39,11 +39,9 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 ### Roadmap
 - [ ]
 
-
 ## Como iniciar o programa
 ```bash
-./mvnw clean install
-./mvnw spring-boot:run
+docker compose up
 ```
 
 ## Contatos

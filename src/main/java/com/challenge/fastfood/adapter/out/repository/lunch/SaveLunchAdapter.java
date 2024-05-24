@@ -1,10 +1,8 @@
 package com.challenge.fastfood.adapter.out.repository.lunch;
 
-import com.challenge.fastfood.adapter.in.controller.request.LunchRequest;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchItemMapper;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchMapper;
 import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemEntity;
-import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemsRepository;
 import com.challenge.fastfood.adapter.out.repository.client.ClientEntity;
 import com.challenge.fastfood.adapter.out.repository.client.ClientRepository;
 import com.challenge.fastfood.domain.entities.Lunch;
@@ -22,7 +20,6 @@ import java.util.List;
 public class SaveLunchAdapter implements SaveLunchAdapterPort {
 
     private final LunchRepository lunchRepository;
-    private final LunchItemsRepository lunchItemRepository;
     private final ClientRepository clientRepository;
     private final LunchMapper lunchMapper;
     private final LunchItemMapper lunchItemMapper;
@@ -57,7 +54,7 @@ public class SaveLunchAdapter implements SaveLunchAdapterPort {
     }
 
     private ClientEntity getClientEntity(Lunch lunch, ClientEntity clientEntity) {
-        if(lunch.getClient().getId() != null) {
+        if(lunch.getClient() != null && lunch.getClient().getId() != null) {
             clientEntity = clientRepository.findById(lunch.getClient().getId() ).orElse(null);
         }
         return clientEntity;

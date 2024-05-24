@@ -4,8 +4,6 @@ import com.challenge.fastfood.adapter.in.controller.request.LunchRequest;
 import com.challenge.fastfood.adapter.in.controller.response.LunchResponse;
 import com.challenge.fastfood.adapter.out.mapstruct.LunchMapper;
 import com.challenge.fastfood.domain.entities.Lunch;
-import com.challenge.fastfood.domain.ports.in.lunch.CreateLunchUseCasePort;
-import com.challenge.fastfood.domain.ports.in.lunch.FindLunchUseCasePort;
 import com.challenge.fastfood.domain.ports.in.lunch.LunchControllerPort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,11 +30,17 @@ public class LunchController {
     }
 
     @GetMapping
-    @Operation(summary = "Get lunch order", description = "Get lunch order")
+    @Operation(summary = "Get lunch orders", description = "Get lunch orders")
     public ResponseEntity<List<LunchResponse>> getAllLunchs() {
         List<Lunch> lunchs = lunchControllerPort.findLunchs();
         return ResponseEntity.ok(lunchMapper.lunchsToLunchsResponse(lunchs));
     }
 
+    @GetMapping("/{lunchId}")
+    @Operation(summary = "Get lunch order", description = "Get lunch order")
+    public ResponseEntity<LunchResponse> getLunch(@PathVariable Long lunchId) {
+        Lunch lunch = lunchControllerPort.findLunchById(lunchId);
+        return ResponseEntity.ok(lunchMapper.lunchToLunchResponse(lunch));
+    }
 
 }
