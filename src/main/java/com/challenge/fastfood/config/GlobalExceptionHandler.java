@@ -1,5 +1,6 @@
 package com.challenge.fastfood.config;
 
+import com.challenge.fastfood.config.exception.ClientAlreadyExistsException;
 import com.challenge.fastfood.config.exception.ClientException;
 import com.challenge.fastfood.config.exception.LunchItemException;
 import org.springframework.http.*;
@@ -23,7 +24,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setDetail("Client provided was not found in the database.");
         problemDetail.setProperty("TimeStamp", Instant.now());
         return problemDetail;
+    }
 
+    @ExceptionHandler(ClientAlreadyExistsException.class)
+    ProblemDetail handleClientAlreadyExistsException(ClientAlreadyExistsException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
+        problemDetail.setTitle(e.getMessage());
+        problemDetail.setDetail("This client is already registered.");
+        problemDetail.setProperty("TimeStamp", Instant.now());
+        return problemDetail;
     }
 
     @ExceptionHandler(LunchItemException.class)
@@ -33,7 +42,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setDetail("Lunch item provided was not found in the database.");
         problemDetail.setProperty("TimeStamp", Instant.now());
         return problemDetail;
-
     }
 
     @Override

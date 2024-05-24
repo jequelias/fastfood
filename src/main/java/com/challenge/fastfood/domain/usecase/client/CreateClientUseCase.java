@@ -1,12 +1,11 @@
 package com.challenge.fastfood.domain.usecase.client;
 
+import com.challenge.fastfood.config.exception.ClientAlreadyExistsException;
 import com.challenge.fastfood.config.exception.ClientException;
 import com.challenge.fastfood.domain.entities.Client;
 import com.challenge.fastfood.domain.ports.in.client.CreateClientUseCasePort;
 import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.client.SaveClientAdapterPort;
-
-import java.util.List;
 
 public class CreateClientUseCase  implements CreateClientUseCasePort {
 
@@ -39,10 +38,9 @@ public class CreateClientUseCase  implements CreateClientUseCasePort {
         Client findClient = findClientAdapterPort
                 .findClient(null, client.getCpf(), client.getEmail());
 
-
         if(findClient != null ){
             if (findClient.getCpf() != null || findClient.getEmail() != null) {
-                throw new ClientException("Client already exists");
+                throw new ClientAlreadyExistsException("Client already exists");
             }
         }
 
