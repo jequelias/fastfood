@@ -1,7 +1,7 @@
 # Tech-Challenge Fiap - Software Architecture
 
 ## Introdução
-O projeto foi desenvolvido no âmbito da pós graduação em *Software Architecture* da Fiap. Dado um contexto e um problema (descritos abaixo), foi desenvolvida uma aplicação, utilizando os conteúdos aprendidos no curso.
+O projeto foi desenvolvido no âmbito da pós graduação em *Software Architecture* da Fiap. Dado um contexto e um problema (descritos abaixo), foi desenvolvida uma aplicação em Java Spring Boot, utilizando os conteúdos aprendidos no curso.
 
 ### Contexto 
 Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
@@ -34,11 +34,18 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 
 - Observação: A aplicação deve ser entregue com um Dockerfile configurado para executá-la corretamente, e um docker-compose.yml para subir o ambiente completo.
               
-### Funcionamento
+### Desenvolvimento
+
+
 
 ### Roadmap
-- [ ]
+- [ ] Criação do **modelo Event Storming** utilizando a ferramenta *Miro*: <https://miro.com/welcomeonboard/a3FCUDA1U2l2eTREV1h5ekRyaUJIdlhGN0R0eno3UExuelBEZ3dXWmwxSmFGajZIZnZneXkxNWc3R05yVWdacXwzNDU4NzY0NTg3MDUxMjA4Nzc4fDI=?share_link_id=966006482007>
+- [ ] Desenvolvimento do projeto base Utilizando Java + SpringBoot
+- [ ] Criação do banco de dados não relacional utilizando o MySQL
+- [ ] Criação do Dockerfile e Docker compose
+- [ ] Disponibilização de um Swagger para as APIs
 
+### Funcionamento
 
 ## Como iniciar o programa
 ```bash
