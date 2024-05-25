@@ -35,8 +35,7 @@ public class CreateClientUseCase  implements CreateClientUseCasePort {
             throw new ClientException("Invalid email, max 100 characters");
         }
 
-        Client findClient = findClientAdapterPort
-                .findClient(null, client.getCpf(), client.getEmail());
+        Client findClient = findClientAdapterPort.findClient(client.getCpf());
 
         if(findClient != null ){
             if (findClient.getCpf() != null || findClient.getEmail() != null) {

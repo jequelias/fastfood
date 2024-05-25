@@ -6,8 +6,6 @@ import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
 public class FindClientAdapter implements FindClientAdapterPort {
@@ -16,14 +14,8 @@ public class FindClientAdapter implements FindClientAdapterPort {
     private final ClientMapper clientMapper;
 
     @Override
-    public List<Client> findClientList(String name, String cpf, String email) {
-        List<ClientEntity> clientEntity = clientRepository.findAllByNameOrCpfOrEmail(name, cpf, email);
-        return clientMapper.clientListEntityToClient(clientEntity);
-    }
-
-    @Override
-    public Client findClient(String name, String cpf, String email) {
-        ClientEntity clientEntity = clientRepository.findByNameOrCpfOrEmail(name, cpf, email);
+    public Client findClient(String cpf) {
+        ClientEntity clientEntity = clientRepository.findByCpf(cpf);
         return clientMapper.clientEntityToClient(clientEntity);
     }
 
