@@ -38,8 +38,9 @@ public class Config {
     public LunchControllerAdapter createLunchControllerAdapter(
             CreateLunchUseCase createLunchUseCase,
             FindLunchUseCase findLunchUseCase,
-            FindLunchItemsAdapterPort findLunchItemsAdapterPort) {
-        return new LunchControllerAdapter(createLunchUseCase, findLunchUseCase,findLunchItemsAdapterPort);
+            FindLunchItemsAdapterPort findLunchItemsAdapterPort,
+            FindClientAdapterPort findClientAdapterPort) {
+        return new LunchControllerAdapter(createLunchUseCase, findLunchUseCase,findLunchItemsAdapterPort, findClientAdapterPort);
     }
 
     @Bean
