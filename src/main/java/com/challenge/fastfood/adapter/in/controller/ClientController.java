@@ -7,6 +7,7 @@ import com.challenge.fastfood.adapter.out.mapstruct.ClientMapper;
 import com.challenge.fastfood.domain.entities.Client;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class ClientController {
 
     @PostMapping
     @Operation(summary = "Create client", description = "Create a client")
-    public ResponseEntity<ClientResponse> createClient(@RequestBody ClientRequest clientRequest) {
+    public ResponseEntity<ClientResponse> createClient(@Valid @RequestBody ClientRequest clientRequest) {
         Client client = clientControllerPort.createClient(clientMapper.clientRequestToClient(clientRequest));
         return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
     }
