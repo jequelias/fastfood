@@ -41,6 +41,7 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 
 ## Como iniciar o programa
 ```bash
+docker compose build
 docker compose up
 ```
 
