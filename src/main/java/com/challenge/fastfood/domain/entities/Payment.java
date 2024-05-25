@@ -2,14 +2,10 @@ package com.challenge.fastfood.domain.entities;
 
 public class Payment {
     private Long idLunch;
-    private double value;
     private String status;
 
-
-
-    public Payment(Long idLunch, double value) {
+    public Payment(Long idLunch) {
         this.idLunch = idLunch;
-        this.value = value;
         this.status = "PENDING";
     }
 
@@ -17,12 +13,8 @@ public class Payment {
         return idLunch;
     }
 
-    public double getValue() {
-        return value;
-    }
-
-    public void setPaymentStatus(String paymentProcessedSuccessfully) {
-        this.status = paymentProcessedSuccessfully;
+    public void setPaymentStatus(String paymentStatus) {
+        this.status = paymentStatus;
     }
 
     public String getStatus() {

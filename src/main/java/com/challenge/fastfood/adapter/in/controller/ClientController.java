@@ -7,11 +7,10 @@ import com.challenge.fastfood.adapter.out.mapstruct.ClientMapper;
 import com.challenge.fastfood.domain.entities.Client;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/client")
@@ -25,21 +24,16 @@ public class ClientController {
 
     @PostMapping
     @Operation(summary = "Create client", description = "Create a client")
-    public ResponseEntity<ClientResponse> createClient(@RequestBody ClientRequest clientRequest) {
+    public ResponseEntity<ClientResponse> createClient(@Valid @RequestBody ClientRequest clientRequest) {
         Client client = clientControllerPort.createClient(clientMapper.clientRequestToClient(clientRequest));
         return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
     }
 
     @GetMapping
     @Operation(summary = "Get client", description = "Get client")
-    public ResponseEntity<List<ClientResponse>> getClient(@RequestParam(required = false) String name,
-                                                          @RequestParam(required = false) String cpf,
-                                                          @RequestParam(required = false) String email) {
-        List<Client> client = clientControllerPort.findAllClient(
-                name,
-                cpf,
-                email );
-        return ResponseEntity.ok(clientMapper.clientListToClientResponse(client));
+    public ResponseEntity<ClientResponse> getClient(@RequestParam(required = false) String cpf) {
+        Client client = clientControllerPort.findClient(cpf);
+        return ResponseEntity.ok(clientMapper.clientToClientResponse(client));
     }
 
 }

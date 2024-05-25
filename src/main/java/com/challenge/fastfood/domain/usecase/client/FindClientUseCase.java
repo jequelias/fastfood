@@ -5,8 +5,6 @@ import com.challenge.fastfood.domain.entities.Client;
 import com.challenge.fastfood.domain.ports.in.client.FindClientUseCasePort;
 import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 
-import java.util.List;
-
 public class FindClientUseCase implements FindClientUseCasePort {
 
     private final FindClientAdapterPort findClientAdapterPort;
@@ -16,29 +14,15 @@ public class FindClientUseCase implements FindClientUseCasePort {
     }
 
     @Override
-    public Client findClient(String name, String cpf, String email) {
+    public Client findClient(String cpf) {
 
-        if (name == null && cpf == null && email == null) {
-            throw new ClientException("Invalid client, name, cpf or email are required");
+        if (cpf == null) {
+            throw new ClientException("The CPF is required");
         }
 
-        Client client = findClientAdapterPort.findClient(name, cpf, email);
+        Client client = findClientAdapterPort.findClient(cpf);
 
         if (client == null || client.getCpf() == null || client.getEmail() == null) {
-            throw new ClientException("Client not found");
-        }
-        return client;
-    }
-
-    @Override
-    public List<Client> findClients(String name, String cpf, String email) {
-        if (name == null && cpf == null && email == null) {
-            throw new ClientException("Invalid client, name, cpf or email are required");
-        }
-
-        List<Client> client = findClientAdapterPort.findClientList(name, cpf, email);
-
-        if (client == null || client.isEmpty()) {
             throw new ClientException("Client not found");
         }
         return client;

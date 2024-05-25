@@ -1,10 +1,12 @@
 package com.challenge.fastfood.adapter.in;
 
 import com.challenge.fastfood.adapter.in.controller.request.LunchRequest;
+import com.challenge.fastfood.config.exception.ClientException;
 import com.challenge.fastfood.domain.entities.Client;
 import com.challenge.fastfood.domain.entities.Lunch;
 import com.challenge.fastfood.domain.entities.LunchItem;
 import com.challenge.fastfood.domain.ports.in.lunch.LunchControllerPort;
+import com.challenge.fastfood.domain.ports.out.client.FindClientAdapterPort;
 import com.challenge.fastfood.domain.ports.out.lunchItem.FindLunchItemsAdapterPort;
 import com.challenge.fastfood.domain.usecase.lunch.CreateLunchUseCase;
 import com.challenge.fastfood.domain.usecase.lunch.FindLunchUseCase;
@@ -17,13 +19,17 @@ public class LunchControllerAdapter implements LunchControllerPort {
     private final CreateLunchUseCase createLunchUseCase;
     private final FindLunchUseCase findLunchUseCase;
     private final FindLunchItemsAdapterPort findLunchItemsAdapterPort;
+    private final FindClientAdapterPort findClientAdapterPort;
 
     public LunchControllerAdapter(
             CreateLunchUseCase createLunchUseCase,
-            FindLunchUseCase findLunchUseCase, FindLunchItemsAdapterPort findLunchAdapterPort) {
+            FindLunchUseCase findLunchUseCase,
+            FindLunchItemsAdapterPort findLunchAdapterPort,
+            FindClientAdapterPort findClientAdapterPort) {
         this.createLunchUseCase = createLunchUseCase;
         this.findLunchUseCase = findLunchUseCase;
         this.findLunchItemsAdapterPort = findLunchAdapterPort;
+        this.findClientAdapterPort = findClientAdapterPort;
     }
 
     @Override
@@ -38,7 +44,10 @@ public class LunchControllerAdapter implements LunchControllerPort {
 
         Lunch lunch = new Lunch();
         if (lunchRequest.clientId() != null) {
-            Client client = new Client();
+            Client client = findClientAdapterPort.findClientById(lunchRequest.clientId());
+            if (client == null) {
+                throw new ClientException("Client id doesn't represent any existing client");
+            }
             client.setId(lunchRequest.clientId());
             lunch.setClient(client);
         }

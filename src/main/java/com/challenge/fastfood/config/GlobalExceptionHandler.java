@@ -1,6 +1,5 @@
 package com.challenge.fastfood.config;
 
-import com.challenge.fastfood.config.exception.ClientAlreadyExistsException;
 import com.challenge.fastfood.config.exception.ClientException;
 import com.challenge.fastfood.config.exception.LunchItemException;
 import org.springframework.http.*;
@@ -20,17 +19,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ClientException.class)
     ProblemDetail handleClientNotFoundException(ClientException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
-        problemDetail.setTitle(e.getMessage());
-        problemDetail.setDetail("Client provided was not found in the database.");
-        problemDetail.setProperty("TimeStamp", Instant.now());
-        return problemDetail;
-    }
-
-    @ExceptionHandler(ClientAlreadyExistsException.class)
-    ProblemDetail handleClientAlreadyExistsException(ClientAlreadyExistsException e) {
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
-        problemDetail.setTitle(e.getMessage());
-        problemDetail.setDetail("This client is already registered.");
+        problemDetail.setTitle("Client exception");
+        problemDetail.setDetail(e.getMessage());
         problemDetail.setProperty("TimeStamp", Instant.now());
         return problemDetail;
     }
@@ -38,8 +28,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(LunchItemException.class)
     ProblemDetail handleLunchItemException(LunchItemException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
-        problemDetail.setTitle(e.getMessage());
-        problemDetail.setDetail("Lunch item provided was not found in the database.");
+        problemDetail.setTitle("Lunch Item exception");
+        problemDetail.setDetail(e.getMessage());
         problemDetail.setProperty("TimeStamp", Instant.now());
         return problemDetail;
     }

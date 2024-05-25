@@ -9,7 +9,12 @@ public class PaymentAdapter implements PaymentAdapterPort {
 
     @Override
     public Payment processPayment(Payment payment) {
-        payment.setPaymentStatus("Payment processed successfully");
+        payment.setPaymentStatus("PROCESSED");
         return payment;
+    }
+
+    @Override
+    public Payment findPaymentByLunchId(Long lunchId) {
+        return new Payment(lunchId);
     }
 }

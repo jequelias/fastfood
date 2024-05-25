@@ -5,5 +5,6 @@ import com.challenge.fastfood.domain.entities.Payment;
 public interface PaymentAdapterPort {
 
     Payment processPayment(Payment payment);
+    Payment findPaymentByLunchId(Long lunchId);
 
 }
