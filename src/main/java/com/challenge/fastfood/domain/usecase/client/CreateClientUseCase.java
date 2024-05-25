@@ -1,6 +1,5 @@
 package com.challenge.fastfood.domain.usecase.client;
 
-import com.challenge.fastfood.config.exception.ClientAlreadyExistsException;
 import com.challenge.fastfood.config.exception.ClientException;
 import com.challenge.fastfood.domain.entities.Client;
 import com.challenge.fastfood.domain.ports.in.client.CreateClientUseCasePort;
@@ -39,7 +38,7 @@ public class CreateClientUseCase  implements CreateClientUseCasePort {
 
         if(findClient != null ){
             if (findClient.getCpf() != null || findClient.getEmail() != null) {
-                throw new ClientAlreadyExistsException("Client already exists");
+                throw new ClientException("Client already exists");
             }
         }
 
