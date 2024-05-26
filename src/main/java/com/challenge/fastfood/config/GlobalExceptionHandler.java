@@ -1,6 +1,7 @@
 package com.challenge.fastfood.config;
 
-import com.challenge.fastfood.config.exception.ClientNotFoundException;
+import com.challenge.fastfood.config.exception.ClientException;
+import com.challenge.fastfood.config.exception.LunchItemException;
 import org.springframework.http.*;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,14 +16,22 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(ClientNotFoundException.class)
-    ProblemDetail handleClientNotFoundException(ClientNotFoundException e) {
+    @ExceptionHandler(ClientException.class)
+    ProblemDetail handleClientNotFoundException(ClientException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
-        problemDetail.setTitle(e.getMessage());
-        problemDetail.setDetail("Client provided was not found in the database.");
+        problemDetail.setTitle("Client exception");
+        problemDetail.setDetail(e.getMessage());
         problemDetail.setProperty("TimeStamp", Instant.now());
         return problemDetail;
+    }
 
+    @ExceptionHandler(LunchItemException.class)
+    ProblemDetail handleLunchItemException(LunchItemException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getLocalizedMessage());
+        problemDetail.setTitle("Lunch Item exception");
+        problemDetail.setDetail(e.getMessage());
+        problemDetail.setProperty("TimeStamp", Instant.now());
+        return problemDetail;
     }
 
     @Override

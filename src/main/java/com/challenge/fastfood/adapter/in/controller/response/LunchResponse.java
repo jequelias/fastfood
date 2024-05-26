@@ -1,7 +1,6 @@
 package com.challenge.fastfood.adapter.in.controller.response;
 
-import com.challenge.fastfood.adapter.out.repository.LunchItemEntity;
-import com.challenge.fastfood.domain.entities.Client;
+import com.challenge.fastfood.adapter.out.repository.lunchItem.LunchItemEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
