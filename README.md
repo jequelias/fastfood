@@ -3,7 +3,7 @@
 ## Introdução
 O projeto foi desenvolvido no âmbito da pós graduação em *Software Architecture* da Fiap. Dado um contexto e um problema (descritos abaixo), foi desenvolvida uma aplicação *back-end* * em Java Spring Boot, utilizando os conteúdos aprendidos no curso.
 
-### Contexto 
+### Contexto
 Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente.
 
 Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. Os pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e a perda de negócios.
@@ -22,7 +22,7 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 
 ### Objetivos
 #### Fase 1
- - Desenvolver uma aplicação para todo o sistema de backend (monolito), com base na **arquitetura hexagonal**, apresentando as seguintes APIs:
+- Desenvolver uma aplicação para todo o sistema de backend (monolito), com base na **arquitetura hexagonal**, apresentando as seguintes APIs:
 
 - **Cadastro do Cliente**
 - **Identificação do Cliente via CPF**
@@ -33,26 +33,23 @@ Para solucionar o problema, a lanchonete irá investir em um sistema de autoaten
 - Desenvolver um banco de dados, utilizado para organizar a fila dos pedidos.
 
 - Observação: A aplicação deve ser entregue com um Dockerfile configurado para executá-la corretamente, e um docker-compose.yml para subir o ambiente completo.
-              
+
 ### Desenvolvimento
 Foi desenvolvida uma aplicação *back-end* em Java Spring Boot, contendo um conjunto de APIs, um banco de dados não-relacional MySQL, um Dockerfile e um Docker Compose. Utilizou-se os princípios da **arquitetura hexagonal** para estruturar a aplicação de maneira modularizada, coesa, e escalável.
 
 ### Roadmap
 - [x] Criação do **modelo Event Storming** utilizando a ferramenta *Miro* [link](https://miro.com/app/board/uXjVKX1KHs0=/?share_link_id=306947055624)
 - [x] Desenvolvimento do projeto base Utilizando Java + SpringBoot
-    - [x] **Cadastro do Cliente**: Os clientes possuirão uma interface de cadastro e poderão optar se cadastrar utilizando nome, e-mail e CPF.
-    - [x] **Identificação do Cliente via CPF**: Os clientes possuirão uma interface de identificação e poderão se identificar utilizando o CPF.
-    - [X] **Criar, editar e remover produtos**: Será possível criar, editar e remover produtos e em cada categoria (lanche, bebida e sobremesa)
-    - [x] **Buscar produtos por categoria**: Os clientes possuirão uma interface de pedido e poderão buscar os produtos por categoria (lanche, bebida ou sobremesa)
-    - [x] **Fake checkout, apenas enviar os produtos escolhidos para a fila**
+  - [x] **Cadastro do Cliente**: Os clientes possuirão uma interface de cadastro e poderão optar se cadastrar utilizando nome, e-mail e CPF.
+  - [x] **Identificação do Cliente via CPF**: Os clientes possuirão uma interface de identificação e poderão se identificar utilizando o CPF.
+  - [X] **Criar, editar e remover produtos**: Será possível criar, editar e remover produtos e em cada categoria (lanche, bebida e sobremesa)
+  - [x] **Buscar produtos por categoria**: Os clientes possuirão uma interface de pedido e poderão buscar os produtos por categoria (lanche, bebida ou sobremesa)
+  - [x] **Fake checkout, apenas enviar os produtos escolhidos para a fila**
 - [x] Criação do banco de dados não relacional utilizando o MySQL
 - [x] Criação do Dockerfile e Docker Compose
 - [x] Disponibilização de um Swagger para as APIs
 
 ### Funcionamento
-
-### Roadmap
-- [ ]
 
 ## Como iniciar o projeto
 
@@ -66,3 +63,7 @@ docker compose up
 É possível realizar requisições via Swagger, [clicando aqui](http://localhost:8081/swagger-ui/index.html).
 
 ## Contatos
+- [Sara Akemi Watanabe](https://github.com/SaraAWatanabe)
+- [Letícia de Andrade](https://github.com/leandradz)
+- [Jequelia Santana Gomes](https://github.com/jequelia)
+- [Patrícia Villela Ocaña Bruno](https://github.com/patriciavillela)
