@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec: 
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: saraaw/app_fastfood:latest
+        env:
+        - name: MYSQL_URL
+          value: "jdbc:mysql://mysql:3306/fastfood"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "rootpassword"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
+        #Configurar um end-point para teste de Liveness
+        # livenessProbe:
+        #   httpGet: 

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "rootpassword"
+        - name: MYSQL_DATABASE
+          value: "fastfood"
+        - name: MYSQL_USER
+          value: "user-admin"
+        - name: MYSQL_PASSWORD
+          value: "password"
+        volumeMounts: 
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+        volumes: 
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
+        livenessProbe:
+          exec:
+            command: ["/usr/bin/mysql", "-uroot", "-prootpassword", "-e", "SHOW DATABASES"]
+          initialDelaySeconds: 30
+          periodSeconds: 10

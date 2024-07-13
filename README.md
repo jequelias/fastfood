@@ -67,3 +67,32 @@ docker compose up
 - [Letícia de Andrade](https://github.com/leandradz)
 - [Jequelia Santana Gomes](https://github.com/jequelia)
 - [Patrícia Villela Ocaña Bruno](https://github.com/patriciavillela)
+
+---------
+
+## Como criar um cluster Kubernetes local
+
+
+- O cluster pode ser criado localmente utilizando o Docker Desktop
+- Para subor o cluster corretamente, é necessário seguir os seguintes comandos:
+```bash
+kubectl apply -f namespace.yaml
+Subir Volumes
+kubectl apply -f mysql-pv.yaml
+kubectl apply -f mysql-pvc.yaml
+kubectl apply -f secrets.yaml --> a afzer
+kubectl apply -f configmaps.yaml --> a fazer
+Subir deployments:
+kubectl apply -f adminer-deployment.yaml
+kubectl apply -f app-deployment.yaml
+kubectl apply -f mysql-deployment.yaml
+Subir services:
+kubectl apply -f adminer-service-nodePort.yaml
+kubectl apply -f adminer-service.yaml
+kubectl apply -f app-service-nodePort.yaml
+kubectl apply -f app-service.yaml
+kubectl apply -f mysql-service.yaml
+kubectl apply -f mysql-service-nodePort.yaml
+kubectl apply -f ingress.yaml --> a fazer
+```
+Em breve haverão maneiras automatizadas de subir o cluster :)
