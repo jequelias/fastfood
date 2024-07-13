@@ -26,21 +26,22 @@ spec:
         volumeMounts: 
         - name: mysql-storage
           mountPath: /var/lib/mysql
-        volumes: 
-        - name: mysql-storage
-          persistentVolumeClaim:
-            claimName: mysql-pvc
-        resources:
+        resources:  
           requests:
             memory: "256Mi"
             cpu: "250m"
           limits:
             memory: "512Mi"
             cpu: "500m"
-        ports:
+        ports:  
         - containerPort: 3306
-        livenessProbe:
+        livenessProbe:  
           exec:
             command: ["/usr/bin/mysql", "-uroot", "-prootpassword", "-e", "SHOW DATABASES"]
           initialDelaySeconds: 30
           periodSeconds: 10
+      volumes: 
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+      
