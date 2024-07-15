@@ -96,4 +96,12 @@ kubectl apply -f app-service.yaml - OK
 
 kubectl apply -f ingress.yaml --> a fazer
 ```
+
+## Swagger
+É possível realizar requisições via Swagger, [clicando aqui](http://localhost:30001/swagger-ui/index.html).
+
+
+## Adminer 
+É possível acessar o banco de dados via Adminer [clicando aqui](http://localhost:30000/http://localhost:30000/).
+
 Em breve haverão maneiras automatizadas de subir o cluster :)
