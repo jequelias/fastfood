@@ -10,4 +10,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   hostPath:
-    path: /mnt/data
+    path: /home/sarawatanabe/estudos/fastfood/src/main/resources/db/migration

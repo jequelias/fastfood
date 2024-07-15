@@ -74,25 +74,26 @@ docker compose up
 
 
 - O cluster pode ser criado localmente utilizando o Docker Desktop
-- Para subor o cluster corretamente, é necessário seguir os seguintes comandos:
+- Para subir o cluster corretamente, é necessário seguir os seguintes comandos:
+- Subir somente os comandos com "OK"
 ```bash
 kubectl apply -f namespace.yaml
 Subir Volumes
-kubectl apply -f mysql-pv.yaml
-kubectl apply -f mysql-pvc.yaml
-kubectl apply -f secrets.yaml --> a afzer
+kubectl apply -f mysql-pv.yaml --> corrigir!
+kubectl apply -f mysql-pvc.yaml --> corrigir!
+kubectl apply -f secrets.yaml --> a fazer
 kubectl apply -f configmaps.yaml --> a fazer
-Subir deployments:
-kubectl apply -f adminer-deployment.yaml
-kubectl apply -f app-deployment.yaml
-kubectl apply -f mysql-deployment.yaml
-Subir services:
-kubectl apply -f adminer-service-nodePort.yaml
-kubectl apply -f adminer-service.yaml
-kubectl apply -f app-service-nodePort.yaml
-kubectl apply -f app-service.yaml
-kubectl apply -f mysql-service.yaml
-kubectl apply -f mysql-service-nodePort.yaml
+Subir banco e adminer:
+kubectl apply -f adminer-deployment.yaml - OK  
+kubectl apply -f adminer-service-nodePort.yaml - OK
+kubectl apply -f adminer-service.yaml - OK
+kubectl apply -f mysql-deployment.yaml - OK
+kubectl apply -f mysql-service.yaml - OK
+Subir app: 
+kubectl apply -f app-deployment.yaml - OK (complementar)
+kubectl apply -f app-service-nodePort.yaml - OK
+kubectl apply -f app-service.yaml - OK
+
 kubectl apply -f ingress.yaml --> a fazer
 ```
 Em breve haverão maneiras automatizadas de subir o cluster :)

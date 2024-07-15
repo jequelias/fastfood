@@ -19,6 +19,8 @@ spec:
           value: "rootpassword"
         - name: MYSQL_DATABASE
           value: "fastfood"
+        - name: MYSQL_TEST_DATABASE
+          value: "fastfood_test"
         - name: MYSQL_USER
           value: "user-admin"
         - name: MYSQL_PASSWORD
@@ -37,11 +39,11 @@ spec:
         - containerPort: 3306
         livenessProbe:  
           exec:
-            command: ["/usr/bin/mysql", "-uroot", "-prootpassword", "-e", "SHOW DATABASES"]
-          initialDelaySeconds: 30
+            command: ["/usr/bin/mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+          initialDelaySeconds: 60
           periodSeconds: 10
       volumes: 
       - name: mysql-storage
-        persistentVolumeClaim:
-          claimName: mysql-pvc
+        # persistentVolumeClaim:
+        #   claimName: mysql-pvc
       
