@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql-nodeport-service
+  namespace: cluster-fastfood
 spec:
   type: NodePort
   ports:

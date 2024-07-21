@@ -82,24 +82,26 @@ Subir Volumes
 kubectl apply -f mysql-pv.yaml --> corrigir!
 kubectl apply -f mysql-pvc.yaml --> corrigir!
 kubectl apply -f secrets.yaml --> a fazer
-kubectl apply -f configmaps.yaml --> a fazer
+kubectl apply -f mysql-configmap.yaml --> OK
+kubectl apply -f app-configmap.yaml ---> OK
 Subir banco e adminer:
 kubectl apply -f adminer-deployment.yaml - OK  
 kubectl apply -f adminer-service-nodePort.yaml - OK
 kubectl apply -f adminer-service.yaml - OK
 kubectl apply -f mysql-deployment.yaml - OK
 kubectl apply -f mysql-service.yaml - OK
+kubectl apply -f mysql-hpa.yaml - OK
 Subir app: 
 kubectl apply -f app-deployment.yaml - OK (complementar)
 kubectl apply -f app-service-nodePort.yaml - OK
 kubectl apply -f app-service.yaml - OK
+kubectl apply -f app-hpa.yaml - OK
 
 kubectl apply -f ingress.yaml --> a fazer
 ```
 
 ## Swagger
 É possível realizar requisições via Swagger, [clicando aqui](http://localhost:30001/swagger-ui/index.html).
-
 
 ## Adminer 
 É possível acessar o banco de dados via Adminer [clicando aqui](http://localhost:30000/http://localhost:30000/).
