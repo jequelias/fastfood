@@ -81,7 +81,7 @@ kubectl apply -f namespace.yaml
 Subir Volumes
 kubectl apply -f mysql-pv.yaml --> corrigir!
 kubectl apply -f mysql-pvc.yaml --> corrigir!
-kubectl apply -f secrets.yaml --> a fazer
+kubectl apply -f secrets.yaml --> a fazer!
 kubectl apply -f mysql-configmap.yaml --> OK
 kubectl apply -f app-configmap.yaml ---> OK
 Subir banco e adminer:
@@ -92,7 +92,7 @@ kubectl apply -f mysql-deployment.yaml - OK
 kubectl apply -f mysql-service.yaml - OK
 kubectl apply -f mysql-hpa.yaml - OK
 Subir app: 
-kubectl apply -f app-deployment.yaml - OK (complementar)
+kubectl apply -f app-deployment.yaml - OK (complementar com probe)
 kubectl apply -f app-service-nodePort.yaml - OK
 kubectl apply -f app-service.yaml - OK
 kubectl apply -f app-hpa.yaml - OK
