@@ -81,9 +81,9 @@ docker compose up
 
 
 ```bash
-kubectl apply -f namespace
+kubectl apply -f namespace.yaml
 kubectl apply -f metrics.yaml 
-kubectl apply -f secrets
+kubectl apply -f secrets.yaml
 kubectl apply -f mysql-configmap.yaml 
 kubectl apply -f app-configmap.yaml
 
