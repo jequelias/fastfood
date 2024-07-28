@@ -62,41 +62,42 @@ docker compose up
 ## Swagger
 É possível realizar requisições via Swagger, [clicando aqui](http://localhost:8081/swagger-ui/index.html).
 
-## Contatos
-- [Sara Akemi Watanabe](https://github.com/SaraAWatanabe)
-- [Letícia de Andrade](https://github.com/leandradz)
-- [Jequelia Santana Gomes](https://github.com/jequelia)
-- [Patrícia Villela Ocaña Bruno](https://github.com/patriciavillela)
-
 ---------
 
-## Como criar um cluster Kubernetes local
+### Objetivos
+#### Fase 2
+ - Atualizar a aplicação desenvolvida na FASE 1 refatorando o código para seguir os padrões clean code e clean architecture.
+ - Criar uma arquitetura em Kubernetes que atenda os requisitos de negócio e garanta escalabilidade.
+ - Produzir um desenho da arquitetura contemplando os requisitos de negócio e os requisitos de infraestrutura.
+ - Colection com todas as APIs desenvolvidas com exemplos de requisição.
+ - Guia completo com todas as instruções para execução do projeto.
+ - Link para vídeo demonstrando a arquitetura.
 
+### Funcionamento
+## Como criar um cluster Kubernetes local
 
 - O cluster pode ser criado localmente utilizando o Docker Desktop
 - Para subir o cluster corretamente, é necessário seguir os seguintes comandos:
-- Subir somente os comandos com "OK"
+
+
 ```bash
 kubectl apply -f namespace
-kubectl apply -f metrics.yaml --> OK
-kubectl apply -f secrets. --> OK
-kubectl apply -f mysql-configmap.yaml --> OK
-kubectl apply -f app-configmap.yaml ---> OK
+kubectl apply -f metrics.yaml 
+kubectl apply -f secrets
+kubectl apply -f mysql-configmap.yaml 
+kubectl apply -f app-configmap.yaml
 
 Subir banco e adminer:
-kubectl apply -f adminer-deployment.yaml - OK  
-kubectl apply -f adminer-service-nodePort.yaml - OK
-kubectl apply -f adminer-service.yaml - OK
-kubectl apply -f mysql-statefulset.yaml - OKc
-kubectl apply -f mysql-service.yaml - OK
-kubectl apply -f mysql-hpa.yaml - não subir???
-Subir app: 
-kubectl apply -f app-deployment.yaml - OK (complementar com probe)
-kubectl apply -f app-service-nodePort.yaml - OK
-kubectl apply -f app-service.yaml - OK
-kubectl apply -f app-hpa.yaml - OK
+kubectl apply -f adminer-deployment.yaml 
+kubectl apply -f adminer-service-nodePort.yaml 
+kubectl apply -f mysql-statefulset.yaml 
+kubectl apply -f mysql-service.yaml
 
-kubectl apply -f ingress.yaml --> a fazer
+Subir app: 
+kubectl apply -f app-deployment.yaml 
+kubectl apply -f app-service-nodePort.yaml 
+kubectl apply -f app-hpa.yaml 
+
 ```
 
 ## Swagger
@@ -105,4 +106,8 @@ kubectl apply -f ingress.yaml --> a fazer
 ## Adminer 
 É possível acessar o banco de dados via Adminer [clicando aqui](http://localhost:30000/http://localhost:30000/).
 
-Em breve haverão maneiras automatizadas de subir o cluster :)
+## Contatos
+- [Sara Akemi Watanabe](https://github.com/SaraAWatanabe)
+- [Letícia de Andrade](https://github.com/leandradz)
+- [Jequelia Santana Gomes](https://github.com/jequelia)
+- [Patrícia Villela Ocaña Bruno](https://github.com/patriciavillela)
