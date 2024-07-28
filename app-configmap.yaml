@@ -5,4 +5,3 @@ metadata:
   # namespace: cluster-fastfood
 data:
   MYSQL_URL: "jdbc:mysql://mysql:3306/fastfood"
-  MYSQL_ROOT_PASSWORD: "rootpassword"

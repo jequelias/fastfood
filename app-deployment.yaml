@@ -26,8 +26,8 @@ spec:
               key: MYSQL_URL
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: app-config
+            secretKeyRef:
+              name: secret
               key: MYSQL_ROOT_PASSWORD
         resources:
           requests:

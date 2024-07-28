@@ -1,9 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mysql
   # namespace: cluster-fastfood
 spec:
+  serviceName: "mysql"
+  replicas: 2
   selector:
     matchLabels:
       app: mysql
@@ -16,6 +18,8 @@ spec:
       - name: mysql
         image: mysql:8.0
         envFrom:
+        - secretRef: 
+            name: secret
         - configMapRef:
             name: mysql-config
         volumeMounts: 
@@ -35,8 +39,11 @@ spec:
             command: ["/usr/bin/mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
           initialDelaySeconds: 60
           periodSeconds: 10
-      volumes: 
-      - name: mysql-storage
-        persistentVolumeClaim:
-          claimName: mysql-pvc
-      
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi

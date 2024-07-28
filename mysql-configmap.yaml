@@ -4,8 +4,7 @@ metadata:
   name: mysql-config
   # namespace: cluster-fastfood
 data:
-  MYSQL_ROOT_PASSWORD: "rootpassword"
   MYSQL_DATABASE: "fastfood"
   MYSQL_TEST_DATABASE: "fastfood_test"
   MYSQL_USER: "user-admin"
-  MYSQL_PASSWORD: "password"
+  
