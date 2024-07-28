@@ -78,8 +78,8 @@ docker compose up
 - Subir somente os comandos com "OK"
 ```bash
 kubectl apply -f namespace
-kubectl apply -f metrics.yaml
-kubectl apply -f secrets.yaml
+kubectl apply -f metrics.yaml --> OK
+kubectl apply -f secrets. --> OK
 kubectl apply -f mysql-configmap.yaml --> OK
 kubectl apply -f app-configmap.yaml ---> OK
 
@@ -87,7 +87,7 @@ Subir banco e adminer:
 kubectl apply -f adminer-deployment.yaml - OK  
 kubectl apply -f adminer-service-nodePort.yaml - OK
 kubectl apply -f adminer-service.yaml - OK
-kubectl apply -f mysql-statefulset.yaml - OK
+kubectl apply -f mysql-statefulset.yaml - OKc
 kubectl apply -f mysql-service.yaml - OK
 kubectl apply -f mysql-hpa.yaml - não subir???
 Subir app: 
